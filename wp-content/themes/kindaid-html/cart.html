@@ -1,0 +1,708 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>KindAid - Charity & Nonprofit HTML Template </title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <!-- Place favicon.ico in the root directory -->
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/favicon.png">
+
+   <!-- CSS here -->
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   <link rel="stylesheet" href="assets/css/animate.css">
+   <link rel="stylesheet" href="assets/css/swiper-bundle.css">
+   <link rel="stylesheet" href="assets/css/magnific-popup.css">
+   <link rel="stylesheet" href="assets/css/font-awesome-pro.css">
+   <link rel="stylesheet" href="assets/css/spacing.css">
+   <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+   <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+      <![endif]-->
+
+   <!-- Preloader Start -->
+   <div class="preloader">
+      <div class="loader"></div>
+   </div>
+   <!-- Preloader End -->
+
+   <!-- back to top start -->
+   <div class="back-to-top-wrapper">
+      <button id="back_to_top" type="button" class="back-to-top-btn">
+         <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 6L6 1L1 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+               stroke-linejoin="round" />
+         </svg>
+      </button>
+   </div>
+   <!-- back to top end -->
+
+   <!--search-form-start -->
+   <div class="tp-search-body-overlay"></div>
+   <div class="tp-search-form-toggle">
+      <div class="container">
+         <div class="row mb-70">
+            <div class="col-lg-12">
+               <div class="tp-search-top d-flex justify-content-between align-items-center">
+                  <div class="cm-search-logo">
+                     <a href="index.html"><img data-width="108" src="assets/img/logo/logo.png" alt="logo"></a>
+                  </div>
+                  <button class="tp-search-close">
+                     <i class="fa-light fa-xmark"></i>
+                  </button>
+               </div>
+            </div>
+         </div>
+         <div class="row justify-content-center">
+            <div class="col-lg-12">
+               <div class="tp-search-form">
+                  <form action="#">
+                     <div class="tp-search-form-input">
+                        <input type="text" placeholder="What are you looking foor?" required>
+                        <span class="tp-search-focus-border"></span>
+                        <button class="tp-search-form-icon" type="submit">
+                           <i class="fa-sharp fa-regular fa-magnifying-glass"></i>
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- search-form-end -->   
+
+   <!-- tp-offcanvas start -->
+   <div class="tp-offcanvas">
+      <div class="tp-offcanvas-header mb-50">
+         <div class="tp-offcanvas-logo">
+            <a href="index.html"><img data-width="108" src="assets/img/logo/logo.png" alt=""></a>
+         </div>
+         <div class="tp-offcanvas-close">
+            <button class="tp-offcanvas-close-button"><i class="fal fa-times"></i></button>
+         </div>
+      </div>
+      <div class="tp-offcanvas-menu mb-50">
+         <nav> 
+         </nav>
+      </div>
+      <div class="tp-offcanvas-content mb-40">
+         <h3 class="tp-offcanvas-title"> Hello There!</h3>
+         <p>Lorem ipsum dolor sit amet, consect etur adipiscing elit. </p>
+      </div>
+      <div class="tp-offcanvas-gallery mb-50">
+         <a class="popup-image" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" alt=""></a>
+         <a class="popup-image" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" alt=""></a>
+         <a class="popup-image" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" alt=""></a>
+         <a class="popup-image" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" alt=""></a>
+      </div>
+      <div class="tp-offcanvas-info mb-50">
+         <h3 class="tp-offcanvas-title">Information</h3>
+         <span><a href="#">+ 4 20 7700 1007</a></span>
+         <span><a href="#">hello@exdos.com</a></span>
+         <span><a href="#">Avenue de Roma 158b, Lisboa</a></span>
+      </div>
+      <div class="tp-offcanvas-social">
+         <h3 class="tp-offcanvas-title"> Follow Us</h3>
+         <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 12 18" fill="none">
+               <path fill-rule="evenodd" clip-rule="evenodd" d="M1.62839 7.77713C0.911363 7.77713 0.761719 7.91782 0.761719 8.59194V9.81416C0.761719 10.4883 0.911363 10.629 1.62839 10.629H3.36172V15.5179C3.36172 16.192 3.51136 16.3327 4.22839 16.3327H5.96172C6.67874 16.3327 6.82839 16.192 6.82839 15.5179V10.629H8.77466C9.31846 10.629 9.45859 10.5296 9.60798 10.038L9.97941 8.81579C10.2353 7.97368 10.0776 7.77713 9.14609 7.77713H6.82839V5.74009C6.82839 5.29008 7.21641 4.92527 7.69505 4.92527H10.1617C10.8787 4.92527 11.0284 4.78458 11.0284 4.11046V2.48083C11.0284 1.80671 10.8787 1.66602 10.1617 1.66602H7.69505C5.30182 1.66602 3.36172 3.49004 3.36172 5.74009V7.77713H1.62839Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+            </svg>
+         </a>
+         <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
+               <path fill-rule="evenodd" clip-rule="evenodd" d="M5.28884 0.714844H0.666992L6.14691 7.9153L1.01754 13.9556H3.38746L7.26697 9.38713L10.7118 13.9136H15.3337L9.69453 6.50391L9.70451 6.51669L14.5599 0.798959H12.19L8.58427 5.04503L5.28884 0.714844ZM3.21817 1.97588H4.65702L12.7825 12.6525H11.3436L3.21817 1.97588Z" fill="currentColor"></path>
+            </svg>
+         </a>
+         <a href="#">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <circle cx="9.99991" cy="9.99991" r="8.38077" stroke="currentColor" stroke-width="1.5"></circle>
+               <path d="M18.3799 11.0604C17.6032 10.9148 16.8043 10.8389 15.9891 10.8389C11.5034 10.8389 7.51372 13.1373 4.9707 16.7054" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+               <path d="M15.8665 4.13281C13.2437 7.2064 9.30255 9.16128 4.8957 9.16128C3.76828 9.16128 2.67133 9.03332 1.61914 8.79143" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+               <path d="M12.1938 18.3815C12.4039 17.3641 12.5142 16.3104 12.5142 15.2309C12.5142 9.93756 9.86111 5.26259 5.80957 2.45801" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+            </svg>
+         </a>
+         <a href="#">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M1.66602 8.99935C1.66602 5.54238 1.66602 3.8139 2.73996 2.73996C3.8139 1.66602 5.54238 1.66602 8.99935 1.66602C12.4563 1.66602 14.1848 1.66602 15.2587 2.73996C16.3327 3.8139 16.3327 5.54238 16.3327 8.99935C16.3327 12.4563 16.3327 14.1848 15.2587 15.2587C14.1848 16.3327 12.4563 16.3327 8.99935 16.3327C5.54238 16.3327 3.8139 16.3327 2.73996 15.2587C1.66602 14.1848 1.66602 12.4563 1.66602 8.99935Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+               <path d="M12.4747 9.00103C12.4747 10.9195 10.9195 12.4747 9.00103 12.4747C7.08256 12.4747 5.52734 10.9195 5.52734 9.00103C5.52734 7.08256 7.08256 5.52734 9.00103 5.52734C10.9195 5.52734 12.4747 7.08256 12.4747 9.00103Z" stroke="currentColor" stroke-width="1.5"></path>
+               <path d="M13.251 4.75391L13.242 4.75391" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+         </a>
+      </div>
+   </div>
+   <div class="tp-offcanvas-overlay"></div>
+   <!-- tp-offcanvas end -->
+
+   <!-- cart mini area start -->
+   <div class="cartmini__area">
+      <div class="cartmini__wrapper d-flex justify-content-between flex-column">
+         <div class="cartmini__top-wrapper ">
+            <div class="cartmini__top p-relative">
+               <div class="cartmini__title">
+                  <h4>Shopping cart</h4>
+               </div>
+               <div class="cartmini__close">
+                  <button type="button" class="cartmini__close-btn cartmini-close-btn"><i class="fal fa-times"></i></button>
+               </div>
+            </div>
+            <div class="cartmini__widget">
+               <div class="cartmini__widget-item">
+                  <div class="cartmini__thumb">
+                     <a href="shop-details.html">
+                        <img src="assets/img/product/product-4.jpg" alt="">
+                     </a>
+                  </div>
+                  <div class="cartmini__content">
+                     <h5><a href="shop-details.html">Tommy Hilfiger Women’s Jaden</a></h5>
+                     <div class="cartmini__price-wrapper">
+                        <span class="cartmini__price">$46.00</span>
+                        <span class="cartmini__quantity">x2</span>
+                     </div>
+                  </div>
+                  <button class="cartmini__del"><i class="fal fa-times"></i></button>
+               </div>
+               <div class="cartmini__widget-item">
+                  <div class="cartmini__thumb">
+                     <a href="shop-details.html">
+                        <img src="assets/img/product/product-2.jpg" alt="">
+                     </a>
+                  </div>
+                  <div class="cartmini__content">
+                     <h5><a href="shop-details.html">Women's Essentials Convertible</a></h5>
+                     <div class="cartmini__price-wrapper">
+                        <span class="cartmini__price">$78.00</span>
+                        <span class="cartmini__quantity">x1</span>
+                     </div>
+                  </div>
+                  <button class="cartmini__del"><i class="fal fa-times"></i></button>
+               </div>
+               <div class="cartmini__widget-item">
+                  <div class="cartmini__thumb">
+                     <a href="shop-details.html">
+                        <img src="assets/img/product/product-3.jpg" alt="">
+                     </a>
+                  </div>
+                  <div class="cartmini__content">
+                     <h5><a href="shop-details.html">Calvin Klein Gabrianna Novelty</a></h5>
+                     <div class="cartmini__price-wrapper">
+                        <span class="cartmini__price">$98.00</span>
+                        <span class="cartmini__quantity">x3</span>
+                     </div>
+                  </div>
+                  <button class="cartmini__del"><i class="fal fa-times"></i></button>
+               </div>
+            </div>
+            <!-- for wp -->
+            <!-- if no item in cart -->
+            <div class="cartmini__empty text-center d-none">
+               <img src="assets/img/product/cart/empty-cart.png" alt="">
+               <p>Your Cart is empty</p>
+               <a href="shop.html" class="tp-btn">Go to Shop</a>
+            </div>
+         </div>
+         <div class="cartmini__checkout">
+            <div class="cartmini__checkout-title mb-30">
+               <h4>Subtotal:</h4>
+               <span>$113.00</span>
+            </div>
+            <div class="cartmini__checkout-btn">
+               <a href="cart.html" class="tp-btn justify-content-center mb-10 w-100"> view cart</a>
+               <a href="checkout.html" class="tp-btn justify-content-center tp-btn-border w-100">checkout</a>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- cart mini area end -->
+
+   <!-- header start -->
+   <header class="tp-header-height">
+      <div id="header-sticky" class="tp-header-area tp-header-2-style tp-header-lg-spacing tp-header-blur">
+         <div class="container-fluid container-1790">
+            <div class="row align-items-center">
+               <div class="col-xxl-3 col-xl-2 col-5">
+                  <div class="tp-header-logo">
+                     <a href="index.html"><img data-width="108" src="assets/img/logo/logo.png" alt="logo"></a>
+                  </div>
+               </div>
+               <div class="col-xxl-6 col-xl-6 d-none d-xl-block">
+                  <div class="tp-main-menu text-center">
+                     <nav class="tp-mobile-menu-active">
+                        <ul>
+                           <li class="has-dropdown">
+                              <a href="index.html">Home</a>
+                              <ul class="sub-menu">
+                                 <li><a href="index.html">Home 01</a></li>
+                                 <li><a href="index-2.html">Home 02</a></li>
+                                 <li><a href="index-3.html">Home 03</a></li>
+                              </ul>
+                           </li>
+                           <li><a href="about.html">About</a>
+                           </li>
+                           <li class="has-dropdown">
+                              <a href="causes.html">Causes</a>
+                              <ul class="sub-menu">
+                                 <li><a href="causes.html">Causes</a></li>
+                                 <li><a href="causes-details.html">Causes Details</a></li>
+                              </ul>
+                           </li>
+                           <li class="has-dropdown">
+                              <a href="#">Pages</a>
+                              <ul class="sub-menu">
+                                 <li><a href="service.html">What We Do</a></li>
+                                 <li><a href="events.html">Events</a></li>
+                                 <li><a href="events-details.html">Events Details</a></li>
+                                 <li><a href="team.html">Team</a></li>
+                                 <li><a href="team-details.html">Team Details</a></li>
+                                 <li class="menu-item-has-children">
+                                    <a href="shop.html">Shop</a>
+                                    <ul class="sub-menu">
+                                       <li><a href="shop.html">Shop</a></li>
+                                       <li><a href="shop-details.html">Shop Details</a></li>
+                                       <li><a href="cart.html">Cart</a></li>
+                                       <li><a href="checkout.html">Checkout</a></li>
+                                    </ul>
+                                 </li>
+                                 <li><a href="faq.html">Faq</a></li>
+                                 <li><a href="contact.html">Contact</a></li>
+                              </ul> 
+                           </li>
+                           <li class="has-dropdown">
+                              <a href="blog.html">Blog</a>
+                              <ul class="sub-menu">
+                                 <li><a href="blog.html">Blog Grid</a></li>
+                                 <li><a href="blog-standard.html">Blog Standard</a></li>
+                                 <li><a href="blog-details.html">Blog Details</a></li>
+                              </ul>
+                           </li>
+                           <li><a href="donate.html">Donation</a></li>
+                        </ul>
+                     </nav>
+                  </div>
+               </div>
+               <div class="col-xxl-3 col-xl-4 col-7">
+                  <div class="tp-header-action d-flex align-items-center justify-content-end">
+                     <div class="tp-header-action-item">
+                        <button class="tp-header-action-btn cartmini-open-btn">
+                           <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5781 23H16.1324C19.6419 23 22.3343 21.7324 21.5695 16.6305L20.679 9.71622C20.2076 7.17051 18.5838 6.19622 17.159 6.19622H5.50953C4.06382 6.19622 2.5343 7.24384 1.98953 9.71622L1.09906 16.6305C0.449537 21.1562 3.06858 23 6.5781 23Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M6.42158 5.9448C6.42158 3.21389 8.63542 1.00004 11.3663 1.00004V1.00004C12.6814 0.994472 13.9445 1.51297 14.8763 2.4409C15.8082 3.36883 16.332 4.62973 16.332 5.9448V5.9448" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M7.97149 11.0991H8.02387" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M14.6453 11.0991H14.6977" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                           </svg>
+                           <span class="tp-header-action-badge">3</span>
+                        </button>
+                     </div>
+                     <div class="tp-header-action-item">
+                        <button class="tp-header-action-btn tp-search-click">
+                           <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10.5022 18.7778C15.4114 18.7778 19.3911 14.7981 19.3911 9.88889C19.3911 4.97969 15.4114 1 10.5022 1C5.59298 1 1.61328 4.97969 1.61328 9.88889C1.61328 14.7981 5.59298 18.7778 10.5022 18.7778Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M21.6131 21L16.7798 16.1667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                           </svg>
+                        </button>
+                     </div>
+                     <div class="tp-header-2-btn-wrap d-none d-md-block">
+                        <a class="tp-btn tp-btn-animetion tp-header-2-btn" href="donate.html">
+                           <span class="btn-text">Donate Now </span>
+                           <span class="btn-icon">
+                              <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M4.70996 0.000113962C5.18246 0.0142314 5.63995 0.0952827 6.0832 0.243385H6.12745C6.15745 0.257385 6.17995 0.272859 6.19495 0.286858C6.36069 0.339173 6.51744 0.39812 6.66744 0.479171L6.95244 0.604432C7.06494 0.663379 7.19994 0.773166 7.27494 0.818113C7.34993 0.861586 7.43243 0.906532 7.49993 0.957374C8.33317 0.331805 9.34491 -0.00713669 10.3874 0.000113962C10.8606 0.000113962 11.3331 0.0658095 11.7824 0.213912C14.5506 1.09811 15.5481 4.08227 14.7149 6.69065C14.2424 8.02357 13.4699 9.24008 12.4581 10.2341C11.0099 11.6119 9.42066 12.8351 7.70993 13.8887L7.52243 14L7.32744 13.8814C5.6107 12.8351 4.01247 11.6119 2.55074 10.2267C1.54575 9.23271 0.772504 8.02357 0.292509 6.69065C-0.554982 4.08227 0.442508 1.09811 3.24073 0.198439C3.45823 0.124756 3.68247 0.0731778 3.90747 0.0444414H3.99747C4.20822 0.0142314 4.41747 0.000113962 4.62746 0.000113962H4.70996ZM11.3924 2.32861C11.0849 2.22472 10.7474 2.38756 10.6349 2.69703C10.5299 3.0065 10.6949 3.34544 11.0099 3.45523C11.4906 3.63207 11.8124 4.09701 11.8124 4.61205V4.63489C11.7981 4.80363 11.8499 4.96646 11.9549 5.09173C12.0599 5.21699 12.2174 5.28993 12.3824 5.30541C12.6899 5.2973 12.9524 5.05488 12.9749 4.74468V4.657C12.9974 3.6247 12.3606 2.68966 11.3924 2.32861Z" fill="#FF4121" />
+                              </svg>
+                           </span>
+                        </a>
+                     </div>
+                     <div class="tp-header-toogle-wrapper d-xl-none">
+                        <button class="tp-header-toogle"><i class="far fa-bars"></i></button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </header>
+   <!-- header end -->
+
+   <main>
+
+      <!-- tp-breadcrumb-area-start -->
+      <div class="tp-breadcrumb-area tp-breadcrumb-bg bg-position" data-img-bg="assets/img/breadcrumb/bg-2.jpg">
+         <div class="container">
+            <div class="tp-breadcrumb text-center position-relative z-index-2">
+               <h2 class="tp-breadcrumb-title lh-1 mb-10 wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".3s">Cart</h2>
+               <div class="tp-breadcrumb-list wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".4s">
+                  <span><a href="index.html">Home</a></span>
+                  <span class="dvir">/</span>
+                  <span class="active">Cart</span>
+               </div>
+               <div class="tp-breadcrumb-scroll pt-85">
+                  <a href="#">
+                     <svg width="20" height="29" viewBox="0 0 20 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 9.9541C1.00024 5.00348 5.03497 1 10 1C14.965 1 18.9998 5.00348 19 9.9541V19.0459C18.9998 23.9965 14.965 28 10 28C5.03497 28 1.00024 23.9965 1 19.0459L1 9.9541Z" stroke="white" stroke-opacity="0.1" stroke-width="2" />
+                        <path class="upslide-1" d="M13 19.0455C13 17.398 11.6569 16.0625 10 16.0625C8.34315 16.0625 7 17.398 7 19.0455C7 20.6929 8.34315 22.0284 10 22.0284C11.6569 22.0284 13 20.6929 13 19.0455Z" fill="white" />
+                     </svg>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>   
+      <!-- tp-breadcrumb-area-end -->
+
+      <!-- cart area start -->
+      <div class="tp-cart-area pb-120 pt-120">
+         <div class="container container-1424">
+            <div class="row">
+               <div class="col-xl-9 col-lg-8">
+                  <div class="tp-cart-list mb-25 mr-30">
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="tp-cart-header-product">Product</th>
+                              <th class="tp-cart-header-price">Price</th>
+                              <th class="tp-cart-header-quantity">Quantity</th>
+                              <th></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <!-- img -->
+                              <td class="tp-cart-img"><a href="shop-details.html"> <img src="assets/img/product/shop/sm/shop-sm-1.jpg" alt=""></a></td>
+                              <!-- title -->
+                              <td class="tp-cart-title"><a href="shop-details.html">Legendary Whitetails Wmen's.</a></td>
+                              <!-- price -->
+                              <td class="tp-cart-price"><span>$76.00</span></td>
+                              <!-- quantity -->
+                              <td class="tp-cart-quantity tp-product-details-quantity">
+                                 <div class="tp-product-quantity mt-10 mb-10">
+                                    <span class="tp-cart-minus">
+                                       <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M1 1H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                       </svg>                                                             
+                                    </span>
+                                    <input class="tp-cart-input" type="text" value="1">
+                                    <span class="tp-cart-plus">
+                                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M5 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                          <path d="M1 5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                       </svg>
+                                    </span>
+                                 </div>
+                              </td>
+                              <!-- action -->
+                              <td class="tp-cart-action">
+                                 <button class="tp-cart-action-btn">
+                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53033 1.53033C9.82322 1.23744 9.82322 0.762563 9.53033 0.46967C9.23744 0.176777 8.76256 0.176777 8.46967 0.46967L5 3.93934L1.53033 0.46967C1.23744 0.176777 0.762563 0.176777 0.46967 0.46967C0.176777 0.762563 0.176777 1.23744 0.46967 1.53033L3.93934 5L0.46967 8.46967C0.176777 8.76256 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23744 9.82322 1.53033 9.53033L5 6.06066L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033C9.82322 9.23744 9.82322 8.76256 9.53033 8.46967L6.06066 5L9.53033 1.53033Z" fill="currentColor"/>
+                                    </svg>
+                                    <span>Remove</span>
+                                 </button>
+                              </td>
+                           </tr>
+                           <tr>
+                              <!-- img -->
+                              <td class="tp-cart-img"><a href="shop-details.html"> <img src="assets/img/product/shop/sm/shop-sm-2.jpg" alt=""></a></td>
+                              <!-- title -->
+                              <td class="tp-cart-title"><a href="shop-details.html">Tommy Hilfiger Women’s Jaden</a></td>
+                              <!-- price -->
+                              <td class="tp-cart-price"><span>$44.00</span></td>
+                              <!-- quantity -->
+                              <td class="tp-cart-quantity tp-product-details-quantity">
+                                 <div class="tp-product-quantity mt-10 mb-10">
+                                    <span class="tp-cart-minus">
+                                       <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M1 1H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                       </svg>                                                             
+                                    </span>
+                                    <input class="tp-cart-input" type="text" value="1">
+                                    <span class="tp-cart-plus">
+                                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M5 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                          <path d="M1 5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                       </svg>
+                                    </span>
+                                 </div>
+                              </td>
+                              <!-- action -->
+                              <td class="tp-cart-action">
+                                 <button class="tp-cart-action-btn">
+                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53033 1.53033C9.82322 1.23744 9.82322 0.762563 9.53033 0.46967C9.23744 0.176777 8.76256 0.176777 8.46967 0.46967L5 3.93934L1.53033 0.46967C1.23744 0.176777 0.762563 0.176777 0.46967 0.46967C0.176777 0.762563 0.176777 1.23744 0.46967 1.53033L3.93934 5L0.46967 8.46967C0.176777 8.76256 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23744 9.82322 1.53033 9.53033L5 6.06066L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033C9.82322 9.23744 9.82322 8.76256 9.53033 8.46967L6.06066 5L9.53033 1.53033Z" fill="currentColor"/>
+                                    </svg>
+                                    <span>Remove</span>
+                                 </button>
+                              </td>
+                           </tr>
+                           <tr>
+                              <!-- img -->
+                              <td class="tp-cart-img"><a href="shop-details.html"> <img src="assets/img/product/shop/sm/shop-sm-3.jpg" alt=""></a></td>
+                              <!-- title -->
+                              <td class="tp-cart-title"><a href="shop-details.html">Simple Modern School Boys</a></td>
+                              <!-- price -->
+                              <td class="tp-cart-price"><span>$62.00</span></td>
+                              <!-- quantity -->
+                              <td class="tp-cart-quantity tp-product-details-quantity">
+                                 <div class="tp-product-quantity mt-10 mb-10">
+                                    <span class="tp-cart-minus">
+                                       <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M1 1H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                       </svg>                                                             
+                                    </span>
+                                    <input class="tp-cart-input" type="text" value="1">
+                                    <span class="tp-cart-plus">
+                                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M5 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                          <path d="M1 5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                       </svg>
+                                    </span>
+                                 </div>
+                              </td>
+                              <!-- action -->
+                              <td class="tp-cart-action">
+                                 <button class="tp-cart-action-btn">
+                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53033 1.53033C9.82322 1.23744 9.82322 0.762563 9.53033 0.46967C9.23744 0.176777 8.76256 0.176777 8.46967 0.46967L5 3.93934L1.53033 0.46967C1.23744 0.176777 0.762563 0.176777 0.46967 0.46967C0.176777 0.762563 0.176777 1.23744 0.46967 1.53033L3.93934 5L0.46967 8.46967C0.176777 8.76256 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23744 9.82322 1.53033 9.53033L5 6.06066L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033C9.82322 9.23744 9.82322 8.76256 9.53033 8.46967L6.06066 5L9.53033 1.53033Z" fill="currentColor"/>
+                                    </svg>
+                                    <span>Remove</span>
+                                 </button>
+                              </td>
+                           </tr>
+                           <tr>
+                              <!-- img -->
+                              <td class="tp-cart-img"><a href="shop-details.html"> <img src="assets/img/product/shop/sm/shop-sm-4.jpg" alt=""></a></td>
+                              <!-- title -->
+                              <td class="tp-cart-title"><a href="shop-details.html">Calvin Klein Gabrianna Novelty</a></td>
+                              <!-- price -->
+                              <td class="tp-cart-price"><span>$93.00</span></td>
+                              <!-- quantity -->
+                              <td class="tp-cart-quantity tp-product-details-quantity">
+                                 <div class="tp-product-quantity mt-10 mb-10">
+                                    <span class="tp-cart-minus">
+                                       <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M1 1H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                       </svg>                                                             
+                                    </span>
+                                    <input class="tp-cart-input" type="text" value="1">
+                                    <span class="tp-cart-plus">
+                                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M5 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                          <path d="M1 5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                       </svg>
+                                    </span>
+                                 </div>
+                              </td>
+                              <!-- action -->
+                              <td class="tp-cart-action">
+                                 <button class="tp-cart-action-btn">
+                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53033 1.53033C9.82322 1.23744 9.82322 0.762563 9.53033 0.46967C9.23744 0.176777 8.76256 0.176777 8.46967 0.46967L5 3.93934L1.53033 0.46967C1.23744 0.176777 0.762563 0.176777 0.46967 0.46967C0.176777 0.762563 0.176777 1.23744 0.46967 1.53033L3.93934 5L0.46967 8.46967C0.176777 8.76256 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23744 9.82322 1.53033 9.53033L5 6.06066L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033C9.82322 9.23744 9.82322 8.76256 9.53033 8.46967L6.06066 5L9.53033 1.53033Z" fill="currentColor"/>
+                                    </svg>
+                                    <span>Remove</span>
+                                 </button>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="tp-cart-bottom">
+                     <div class="row align-items-end">
+                        <div class="col-xl-6 col-md-8">
+                           <div class="tp-cart-coupon">
+                              <form action="#">
+                                 <div class="tp-cart-coupon-input-box">
+                                    <label>Coupon Code:</label>
+                                    <div class="tp-cart-coupon-input d-flex align-items-center">
+                                       <input type="text" placeholder="Enter Coupon Code">
+                                       <button type="submit">Apply</button>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                        <div class="col-xl-6 col-md-4">
+                           <div class="tp-cart-update text-md-end">
+                              <button type="button" class="tp-cart-update-btn">Update Cart</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xl-3 col-lg-4 col-md-6">
+                  <div class="tp-cart-checkout-wrapper">
+                     <div class="tp-cart-checkout-top d-flex align-items-center justify-content-between">
+                        <span class="tp-cart-checkout-top-title">Subtotal</span>
+                        <span class="tp-cart-checkout-top-price">$742</span>
+                     </div>
+                     <div class="tp-cart-checkout-shipping">
+                        <h4 class="tp-cart-checkout-shipping-title">Shipping</h4>
+                        <div class="tp-cart-checkout-shipping-option-wrapper">
+                           <div class="tp-cart-checkout-shipping-option">
+                              <input id="flat_rate" type="radio" name="shipping">
+                              <label for="flat_rate">Flat rate: <span>$20.00</span></label>
+                           </div>
+                           <div class="tp-cart-checkout-shipping-option">
+                              <input id="local_pickup" type="radio" name="shipping">
+                              <label for="local_pickup">Local pickup: <span> $25.00</span></label>
+                           </div>
+                           <div class="tp-cart-checkout-shipping-option">
+                              <input id="free_shipping" type="radio" name="shipping">
+                              <label for="free_shipping">Free shipping</label>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="tp-cart-checkout-total d-flex align-items-center justify-content-between">
+                        <span>Total</span>
+                        <span>$724</span>
+                     </div>
+                     <div class="tp-cart-checkout-proceed">
+                        <a href="checkout.html" class="tp-cart-checkout-btn w-100">Proceed to Checkout</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- cart area end -->
+
+
+   </main>
+
+   <footer>
+
+      <!-- tp-footer-area-start -->
+      <div class="tp-footer-area bg-position pt-130" data-img-bg="assets/img/footer/bg.jpg">
+         <div class="container container-1424">
+            <div class="row pb-60">
+               <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6">
+                  <div class="tp-footer-widget mb-40 wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".3s">
+                     <div class="tp-footer-logo mb-25">
+                        <a href="index.html"><img data-width="108" src="assets/img/logo/logo-yellow.png" alt=""></a>
+                     </div>
+                     <p class="tp-footer-dec mb-30">Our Gifall charity at vero eos et
+                        accusamus et iusto odio dignissimos
+                        ducimus qui blanditiis praesentium</p>
+                     <div class="tp-footer-social">
+                        <a href="#">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 12 18" fill="none">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M1.62839 7.77713C0.911363 7.77713 0.761719 7.91782 0.761719 8.59194V9.81416C0.761719 10.4883 0.911363 10.629 1.62839 10.629H3.36172V15.5179C3.36172 16.192 3.51136 16.3327 4.22839 16.3327H5.96172C6.67874 16.3327 6.82839 16.192 6.82839 15.5179V10.629H8.77466C9.31846 10.629 9.45859 10.5296 9.60798 10.038L9.97941 8.81579C10.2353 7.97368 10.0776 7.77713 9.14609 7.77713H6.82839V5.74009C6.82839 5.29008 7.21641 4.92527 7.69505 4.92527H10.1617C10.8787 4.92527 11.0284 4.78458 11.0284 4.11046V2.48083C11.0284 1.80671 10.8787 1.66602 10.1617 1.66602H7.69505C5.30182 1.66602 3.36172 3.49004 3.36172 5.74009V7.77713H1.62839Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                           </svg>
+                        </a>
+                        <a href="#">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.28884 0.714844H0.666992L6.14691 7.9153L1.01754 13.9556H3.38746L7.26697 9.38713L10.7118 13.9136H15.3337L9.69453 6.50391L9.70451 6.51669L14.5599 0.798959H12.19L8.58427 5.04503L5.28884 0.714844ZM3.21817 1.97588H4.65702L12.7825 12.6525H11.3436L3.21817 1.97588Z" fill="currentColor"/>
+                           </svg>
+                        </a>
+                        <a href="#">
+                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="9.99991" cy="9.99991" r="8.38077" stroke="currentColor" stroke-width="1.5"/>
+                              <path d="M18.3799 11.0604C17.6032 10.9148 16.8043 10.8389 15.9891 10.8389C11.5034 10.8389 7.51372 13.1373 4.9707 16.7054" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                              <path d="M15.8665 4.13281C13.2437 7.2064 9.30255 9.16128 4.8957 9.16128C3.76828 9.16128 2.67133 9.03332 1.61914 8.79143" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                              <path d="M12.1938 18.3815C12.4039 17.3641 12.5142 16.3104 12.5142 15.2309C12.5142 9.93756 9.86111 5.26259 5.80957 2.45801" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                           </svg>
+                        </a>
+                        <a href="#">
+                           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.66602 8.99935C1.66602 5.54238 1.66602 3.8139 2.73996 2.73996C3.8139 1.66602 5.54238 1.66602 8.99935 1.66602C12.4563 1.66602 14.1848 1.66602 15.2587 2.73996C16.3327 3.8139 16.3327 5.54238 16.3327 8.99935C16.3327 12.4563 16.3327 14.1848 15.2587 15.2587C14.1848 16.3327 12.4563 16.3327 8.99935 16.3327C5.54238 16.3327 3.8139 16.3327 2.73996 15.2587C1.66602 14.1848 1.66602 12.4563 1.66602 8.99935Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                              <path d="M12.4747 9.00103C12.4747 10.9195 10.9195 12.4747 9.00103 12.4747C7.08256 12.4747 5.52734 10.9195 5.52734 9.00103C5.52734 7.08256 7.08256 5.52734 9.00103 5.52734C10.9195 5.52734 12.4747 7.08256 12.4747 9.00103Z" stroke="currentColor" stroke-width="1.5"/>
+                              <path d="M13.251 4.75391L13.242 4.75391" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                           </svg>
+                        </a>
+                     </div>    
+                  </div>
+               </div>            
+               <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                  <div class="tp-footer-widget ml-75 mb-50 wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".4s">
+                     <h3 class="tp-footer-title mb-15">Explore link</h3> 
+                     <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="service.html">Our services</a></li>
+                        <li><a href="blog.html">Blog page</a></li>
+                        <li><a href="contact.html">Connect us</a></li>
+                     </ul> 
+                  </div>
+               </div>
+               <div class="col-xxl-3 col-xl-2 col-lg-6 col-md-6 col-sm-6">
+                  <div class="tp-footer-widget tp-footer-col-2 mb-50 wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".5s">
+                     <h3 class="tp-footer-title mb-15">Solution</h3> 
+                     <ul>
+                        <li><a href="#">Give donation</a></li>
+                        <li><a href="#">Education support</a></li>
+                        <li><a href="#">Food support</a></li>
+                        <li><a href="#">Deep Cleaning</a></li>
+                        <li><a href="#">Health support </a></li>
+                     </ul> 
+                  </div>
+               </div>
+               <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6">
+                  <div class="tp-footer-widget tp-footer-cta mb-50 bg-position wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".6s" data-img-bg="assets/img/footer/bg-2.jpg">
+                     <h3 class="tp-footer-cta-title mb-30"><a class="common-underline" href="https://www.google.com/maps/@41.6758525,-86.2531698,18.17z" target="_blank">6391 Elgin St. Celina,<br> Delaware 10299</a></h3>
+                     <a class="tp-footer-cta-link mb-5" href="tel:(205)555-0100">
+                        <span>
+                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M14.6837 8.95768C14.3253 8.95768 14.042 8.66602 14.042 8.31602C14.042 8.00768 13.7337 7.36602 13.217 6.80768C12.7087 6.26602 12.1503 5.94935 11.6837 5.94935C11.3253 5.94935 11.042 5.65768 11.042 5.30768C11.042 4.95768 11.3337 4.66602 11.6837 4.66602C12.517 4.66602 13.392 5.11602 14.1587 5.92435C14.8753 6.68268 15.3337 7.62435 15.3337 8.30768C15.3337 8.66602 15.042 8.95768 14.6837 8.95768Z" fill="#620035" />
+                              <path d="M17.6915 8.95964C17.3331 8.95964 17.0498 8.66797 17.0498 8.31797C17.0498 5.35964 14.6415 2.95964 11.6915 2.95964C11.3331 2.95964 11.0498 2.66797 11.0498 2.31797C11.0498 1.96797 11.3331 1.66797 11.6831 1.66797C15.3498 1.66797 18.3331 4.6513 18.3331 8.31797C18.3331 8.66797 18.0415 8.95964 17.6915 8.95964Z" fill="#620035" />
+                              <path d="M9.82532 11.843L7.10033 14.568C6.80032 14.3013 6.50866 14.0263 6.22532 13.743C5.36699 12.8763 4.59199 11.968 3.90033 11.018C3.21699 10.068 2.66699 9.11797 2.26699 8.1763C1.86699 7.2263 1.66699 6.31797 1.66699 5.4513C1.66699 4.88464 1.76699 4.34297 1.96699 3.84297C2.16699 3.33464 2.48366 2.86797 2.92533 2.4513C3.45866 1.9263 4.04199 1.66797 4.65866 1.66797C4.89199 1.66797 5.12532 1.71797 5.33366 1.81797C5.55032 1.91797 5.74199 2.06797 5.89199 2.28464L7.82533 5.00964C7.97532 5.21797 8.08366 5.40964 8.15866 5.59297C8.23366 5.76797 8.27532 5.94297 8.27532 6.1013C8.27532 6.3013 8.21699 6.5013 8.10032 6.69297C7.99199 6.88463 7.83366 7.08464 7.63366 7.28464L7.00032 7.94297C6.90866 8.03464 6.86699 8.14297 6.86699 8.2763C6.86699 8.34297 6.87533 8.4013 6.89199 8.46797C6.91699 8.53464 6.94199 8.58463 6.95866 8.63463C7.10866 8.90964 7.36699 9.26797 7.73366 9.7013C8.10866 10.1346 8.50866 10.5763 8.94199 11.018C9.24199 11.3096 9.53366 11.593 9.82532 11.843Z" fill="#620035" />
+                              <path d="M18.3088 15.2752C18.3088 15.5085 18.2672 15.7502 18.1838 15.9835C18.1588 16.0502 18.1338 16.1169 18.1005 16.1835C17.9588 16.4835 17.7755 16.7669 17.5338 17.0335C17.1255 17.4835 16.6755 17.8085 16.1672 18.0169C16.1588 18.0169 16.1505 18.0252 16.1422 18.0252C15.6505 18.2252 15.1172 18.3335 14.5422 18.3335C13.6922 18.3335 12.7838 18.1335 11.8255 17.7252C10.8672 17.3169 9.90882 16.7669 8.95882 16.0752C8.63382 15.8335 8.30882 15.5919 8.00049 15.3335L10.7255 12.6085C10.9588 12.7835 11.1672 12.9169 11.3422 13.0085C11.3838 13.0252 11.4338 13.0502 11.4922 13.0752C11.5588 13.1002 11.6255 13.1085 11.7005 13.1085C11.8422 13.1085 11.9505 13.0585 12.0422 12.9669L12.6755 12.3419C12.8838 12.1335 13.0838 11.9752 13.2755 11.8752C13.4672 11.7585 13.6588 11.7002 13.8672 11.7002C14.0255 11.7002 14.1922 11.7335 14.3755 11.8085C14.5588 11.8835 14.7505 11.9919 14.9588 12.1335L17.7172 14.0919C17.9338 14.2419 18.0838 14.4169 18.1755 14.6252C18.2588 14.8335 18.3088 15.0419 18.3088 15.2752Z" fill="#620035" />
+                           </svg>
+                        </span>
+                        (205) 555-0100
+                     </a>
+                     <a class="tp-footer-cta-link" href="tel:(205)555-0100">
+                        <span>
+                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M14.167 17.0837H5.83366C3.33366 17.0837 1.66699 15.8337 1.66699 12.917V7.08366C1.66699 4.16699 3.33366 2.91699 5.83366 2.91699H14.167C16.667 2.91699 18.3337 4.16699 18.3337 7.08366V12.917C18.3337 15.8337 16.667 17.0837 14.167 17.0837Z" fill="#620035" />
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.655 7.10997C14.8704 7.37968 14.8264 7.77295 14.5567 7.98837L11.9475 10.0723C10.8614 10.937 9.13015 10.937 8.044 10.0723L8.04245 10.0711L5.44246 7.98776C5.17309 7.77192 5.1297 7.37858 5.34554 7.10921C5.56138 6.83984 5.95472 6.79644 6.22409 7.01229L8.82327 9.09496C9.45378 9.59627 10.5384 9.59615 11.1687 9.09462C11.1686 9.0947 11.1688 9.09455 11.1687 9.09462L13.7766 7.01168C14.0463 6.79626 14.4395 6.84026 14.655 7.10997Z" fill="#FFCA24" />
+                           </svg>
+                        </span>
+                        Kindaid@gmail.com
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="tp-footer-bottom">
+            <div class="container container-1424">
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="tp-footer-copyright mb-20">
+                        <p class="mb-0">© 2025 Charity. is Proudly Powered by <a href="#">Aqlova</a></p>
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="tp-footer-policy mb-20 text-lg-end">
+                        <a class="dvdr" href="#">Terms & Condition</a>
+                        <a href="#">Privacy Policy</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- tp-footer-area-end -->
+
+   </footer>
+
+
+   <!-- JS here -->
+   <script src="assets/js/vendor/jquery.js"></script>
+   <script src="assets/js/bootstrap-min.js"></script>
+   <script src="assets/js/swiper-bundle.js"></script>
+   <script src="assets/js/magnific-popup.js"></script>
+   <script src="assets/js/nice-select.js"></script>
+   <script src="assets/js/purecounter.js"></script>
+   <script src="assets/js/imagesloaded-pkgd.js"></script>
+   <script src="assets/js/range-slider.js"></script>
+   <script src="assets/js/ajax-form.js"></script>
+   <script src="assets/js/parallax.js"></script>
+   <script src="assets/js/parallax-scroll.js"></script>
+   <script src="assets/js/wow.min.js"></script>
+   <script src="assets/js/slider-init.js"></script>
+   <script src="assets/js/main.js"></script>
+</body>
+
+</html>
