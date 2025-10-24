@@ -1,4 +1,14 @@
+<?php
+   $header_btn_text = get_theme_mod('header_btn_text',__('Donate Now','kindaid'));
+   $header_btn_url = get_theme_mod('header_btn_url',__('#','kindaid'));
 
+   // header right info switch 
+   $header_right_info_switch = get_theme_mod('header_right_info_switch',false);
+   $header_menu_column = ($header_right_info_switch == false) ? 'col-xxl-9 col-xl-10 col-5' : 'col-xxl-6 col-xl-6' ;
+
+   $header_menu_position = ($header_right_info_switch == false) ? 'text-end' : 'text-center' ;
+
+?>
 
 
    <!-- header start -->
@@ -8,66 +18,21 @@
             <div class="row align-items-center">
                <div class="col-xxl-3 col-xl-2 col-5">
                   <div class="tp-header-logo">
-                     <a href="index.html"><img data-width="108" src="assets/img/logo/logo.png" alt="logo"></a>
+                        <?php kindaid_logo_yellow();?>
                   </div>
                </div>
-               <div class="col-xxl-6 col-xl-6 d-none d-xl-block">
-                  <div class="tp-main-menu text-center">
-                     <nav class="tp-mobile-menu-active">
-                        <ul>
-                           <li class="has-dropdown">
-                              <a href="index.html">Home</a>
-                              <ul class="sub-menu">
-                                 <li><a href="index.html">Home 01</a></li>
-                                 <li><a href="index-2.html">Home 02</a></li>
-                                 <li><a href="index-3.html">Home 03</a></li>
-                              </ul>
-                           </li>
-                           <li><a href="about.html">About</a>
-                           </li>
-                           <li class="has-dropdown">
-                              <a href="causes.html">Causes</a>
-                              <ul class="sub-menu">
-                                 <li><a href="causes.html">Causes</a></li>
-                                 <li><a href="causes-details.html">Causes Details</a></li>
-                              </ul>
-                           </li>
-                           <li class="has-dropdown">
-                              <a href="#">Pages</a>
-                              <ul class="sub-menu">
-                                 <li><a href="service.html">What We Do</a></li>
-                                 <li><a href="events.html">Events</a></li>
-                                 <li><a href="events-details.html">Events Details</a></li>
-                                 <li><a href="team.html">Team</a></li>
-                                 <li><a href="team-details.html">Team Details</a></li>
-                                 <li class="menu-item-has-children">
-                                    <a href="shop.html">Shop</a>
-                                    <ul class="sub-menu">
-                                       <li><a href="shop.html">Shop</a></li>
-                                       <li><a href="shop-details.html">Shop Details</a></li>
-                                       <li><a href="cart.html">Cart</a></li>
-                                       <li><a href="checkout.html">Checkout</a></li>
-                                    </ul>
-                                 </li>
-                                 <li><a href="faq.html">Faq</a></li>
-                                 <li><a href="contact.html">Contact</a></li>
-                              </ul> 
-                           </li>
-                           <li class="has-dropdown">
-                              <a href="blog.html">Blog</a>
-                              <ul class="sub-menu">
-                                 <li><a href="blog.html">Blog Grid</a></li>
-                                 <li><a href="blog-standard.html">Blog Standard</a></li>
-                                 <li><a href="blog-details.html">Blog Details</a></li>
-                              </ul>
-                           </li>
-                           <li><a href="donate.html">Donation</a></li>
-                        </ul>
-                     </nav>
+
+                  <div class="<?php echo esc_attr( $header_menu_column );?> d-none d-xl-block">
+                     <div class="tp-main-menu <?php echo esc_attr($header_menu_position);?>">
+                        <nav class="tp-mobile-menu-active">
+                            <?php kindaid_header_menu(); ?>
+                        </nav>
+                     </div>
                   </div>
-               </div>
+
+            <?php if($header_right_info_switch):?>
                <div class="col-xxl-3 col-xl-4 col-7">
-                  <div class="tp-header-action d-flex align-items-center justify-content-end">
+                  <div class="tp-header-action d-flex align-items-center justify-content-end ">
                      <div class="tp-header-action-item">
                         <button class="tp-header-action-btn cartmini-open-btn">
                            <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,23 +52,36 @@
                            </svg>
                         </button>
                      </div>
-                     <div class="tp-header-2-btn-wrap d-none d-md-block">
-                        <a class="tp-btn tp-btn-animetion tp-header-2-btn" href="donate.html">
-                           <span class="btn-text">Donate Now </span>
-                           <span class="btn-icon">
-                              <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M4.70996 0.000113962C5.18246 0.0142314 5.63995 0.0952827 6.0832 0.243385H6.12745C6.15745 0.257385 6.17995 0.272859 6.19495 0.286858C6.36069 0.339173 6.51744 0.39812 6.66744 0.479171L6.95244 0.604432C7.06494 0.663379 7.19994 0.773166 7.27494 0.818113C7.34993 0.861586 7.43243 0.906532 7.49993 0.957374C8.33317 0.331805 9.34491 -0.00713669 10.3874 0.000113962C10.8606 0.000113962 11.3331 0.0658095 11.7824 0.213912C14.5506 1.09811 15.5481 4.08227 14.7149 6.69065C14.2424 8.02357 13.4699 9.24008 12.4581 10.2341C11.0099 11.6119 9.42066 12.8351 7.70993 13.8887L7.52243 14L7.32744 13.8814C5.6107 12.8351 4.01247 11.6119 2.55074 10.2267C1.54575 9.23271 0.772504 8.02357 0.292509 6.69065C-0.554982 4.08227 0.442508 1.09811 3.24073 0.198439C3.45823 0.124756 3.68247 0.0731778 3.90747 0.0444414H3.99747C4.20822 0.0142314 4.41747 0.000113962 4.62746 0.000113962H4.70996ZM11.3924 2.32861C11.0849 2.22472 10.7474 2.38756 10.6349 2.69703C10.5299 3.0065 10.6949 3.34544 11.0099 3.45523C11.4906 3.63207 11.8124 4.09701 11.8124 4.61205V4.63489C11.7981 4.80363 11.8499 4.96646 11.9549 5.09173C12.0599 5.21699 12.2174 5.28993 12.3824 5.30541C12.6899 5.2973 12.9524 5.05488 12.9749 4.74468V4.657C12.9974 3.6247 12.3606 2.68966 11.3924 2.32861Z" fill="#FF4121" />
-                              </svg>
-                           </span>
-                        </a>
-                     </div>
+                     <?php if(!empty($header_btn_text)):?>
+                           <div class="tp-header-2-btn-wrap d-none d-md-block">
+                              <a class="tp-btn tp-btn-animetion tp-header-2-btn" href="<?php echo esc_url($header_btn_url);?>">
+                                 <span class="btn-text"><?php echo esc_html($header_btn_text);?></span>
+                                 <span class="btn-icon">
+                                    <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M4.70996 0.000113962C5.18246 0.0142314 5.63995 0.0952827 6.0832 0.243385H6.12745C6.15745 0.257385 6.17995 0.272859 6.19495 0.286858C6.36069 0.339173 6.51744 0.39812 6.66744 0.479171L6.95244 0.604432C7.06494 0.663379 7.19994 0.773166 7.27494 0.818113C7.34993 0.861586 7.43243 0.906532 7.49993 0.957374C8.33317 0.331805 9.34491 -0.00713669 10.3874 0.000113962C10.8606 0.000113962 11.3331 0.0658095 11.7824 0.213912C14.5506 1.09811 15.5481 4.08227 14.7149 6.69065C14.2424 8.02357 13.4699 9.24008 12.4581 10.2341C11.0099 11.6119 9.42066 12.8351 7.70993 13.8887L7.52243 14L7.32744 13.8814C5.6107 12.8351 4.01247 11.6119 2.55074 10.2267C1.54575 9.23271 0.772504 8.02357 0.292509 6.69065C-0.554982 4.08227 0.442508 1.09811 3.24073 0.198439C3.45823 0.124756 3.68247 0.0731778 3.90747 0.0444414H3.99747C4.20822 0.0142314 4.41747 0.000113962 4.62746 0.000113962H4.70996ZM11.3924 2.32861C11.0849 2.22472 10.7474 2.38756 10.6349 2.69703C10.5299 3.0065 10.6949 3.34544 11.0099 3.45523C11.4906 3.63207 11.8124 4.09701 11.8124 4.61205V4.63489C11.7981 4.80363 11.8499 4.96646 11.9549 5.09173C12.0599 5.21699 12.2174 5.28993 12.3824 5.30541C12.6899 5.2973 12.9524 5.05488 12.9749 4.74468V4.657C12.9974 3.6247 12.3606 2.68966 11.3924 2.32861Z" fill="#FF4121" />
+                                    </svg>
+                                 </span>
+                              </a>
+                           </div>
+                     <?php endif;?>
                      <div class="tp-header-toogle-wrapper d-xl-none">
                         <button class="tp-header-toogle"><i class="far fa-bars"></i></button>
                      </div>
                   </div>
                </div>
+            <?php endif;?>
+               
+            <?php if($header_right_info_switch == false):?>
+               <div class="col-xxl-9 col-xl-10 col-7 text-end">
+                  <div class="tp-header-toogle-wrapper d-xl-none">
+                     <button class="tp-header-toogle"><i class="far fa-bars"></i></button>
+                  </div>
+               </div>
+            <?php endif;?>
             </div>
          </div>
       </div>
    </header>
    <!-- header end -->
+
+   <?php echo get_template_part('template-parts/headers/offcanvas');?>

@@ -34,7 +34,7 @@
 
 	////////////////////////////////////////////////////
 	// 03. mobile menu Js
-    let tpMenuHTML = $('.tp-mobile-menu-active > ul').clone();
+    let tpMenuHTML = $('.menu-header-menu-container > ul').clone();
     let tpOffcanvasMenu = $('.tp-offcanvas-menu > nav');
 
     tpOffcanvasMenu.append(tpMenuHTML);
@@ -49,6 +49,7 @@
         $(this).siblings('.sub-menu').slideToggle();
         $(this).parent().toggleClass('active');
     });
+
 
 
 

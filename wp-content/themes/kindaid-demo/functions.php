@@ -30,9 +30,38 @@ function kindaid_theme_suppots(){
     ));
     // classic editor
     remove_theme_support( 'widgets-block-editor' );
+
+    // register menu 
+    register_nav_menus( array(
+        'main_menu'=> __('Main Menu','kindaid'),
+    ));
 }
 add_action( 'after_setup_theme','kindaid_theme_suppots' );
 
 // css-calling 
-
 include_once('inc/common/scripts.php');
+
+// template functions 
+include_once('inc/template-functions.php');
+
+// Nav Walker
+include_once('inc/kindaid-nav-walker.php');
+
+// Nav Walker
+include_once('inc/kindaid-pure-metafields.php');
+
+
+// kirki
+if ( class_exists( 'Kirki' ) ) {
+    include_once('inc/kindaid-kirki.php');
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 <?php
 
-function harry_add_theme_scripts() {
+function kindaid_add_theme_scripts() {
     // CSS ফাইল লোড (theme এর css ফোল্ডার থেকে)
     wp_enqueue_style('style', get_stylesheet_uri(), array(), '1.0.0', 'all');
     wp_enqueue_style('harry_fonts', kindaid_fonts_url(), array(), '1.0.0','all');
@@ -16,7 +16,6 @@ function harry_add_theme_scripts() {
     // JS ফাইল লোড (theme এর js ফোল্ডার থেকে)
     wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap-min.js', array('jquery'), '5.3.8', true);
     wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/assets/js/swiper-bundle.js', array('jquery'), '6.5.0', true);
-    wp_enqueue_script('magnific-popup', get_template_directory_uri() . '/assets/js/magnific-popup.js', array('jquery'), '1.0.1', true);
     wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select.js', array('jquery'), '1.0', true);
     wp_enqueue_script('purecounter', get_template_directory_uri() . '/assets/js/purecounter.js', array('jquery'), '1.5.0', true);
     wp_enqueue_script('range-slider', get_template_directory_uri() . '/assets/js/range-slider.js', array('jquery'), '1.12.1', true);
@@ -24,7 +23,7 @@ function harry_add_theme_scripts() {
     wp_enqueue_script('parallax-scroll', get_template_directory_uri() . '/assets/js/parallax-scroll.js', array('jquery'), '1.0.0', true);
     wp_enqueue_script('wow', get_template_directory_uri() . '/assets/js/wow.min.js', array('jquery'), '1.0.0', true);
     wp_enqueue_script('slider-init', get_template_directory_uri() . '/assets/js/slider-init.js', array('jquery'), '1.0.0', true);
-    wp_enqueue_script('slider-init', get_template_directory_uri() . '/assets/js/slider-init.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('magnific-popup', get_template_directory_uri() . '/assets/js/magnific-popup.js', array('jquery'), '1.0.1', true);
     wp_enqueue_script('kindaid-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
 
     if (is_singular() && comments_open() && get_option( 'thread_comments')){
@@ -32,7 +31,7 @@ function harry_add_theme_scripts() {
     }
   
 }
-add_action('wp_enqueue_scripts', 'harry_add_theme_scripts');
+add_action('wp_enqueue_scripts', 'kindaid_add_theme_scripts');
 
 function kindaid_fonts_url(){
     $font_url = '';

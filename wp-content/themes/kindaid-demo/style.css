@@ -18,3 +18,13 @@ Text Domain: kindaid
 This theme, like WordPress itself, is licensed under the GPL.  
 Use it to create something awesome, enjoy the process, and share your knowledge with others.
 */
+
+body .tp-main-menu nav ul li .sub-menu.sub-menu-left {
+    left: auto !important;
+    right: 0;
+}
+
+body .tp-main-menu nav ul li .sub-menu.sub-menu-left .sub-menu.sub-menu-left {
+    left: auto !important;
+    right: 102%;
+}
