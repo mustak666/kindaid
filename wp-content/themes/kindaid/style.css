@@ -1,0 +1,58 @@
+
+/*
+Theme Name: Kindaid 
+Theme URI: https://www.Kindaid.com/  
+Author: Mustak Ahmed Rion  
+Author URI: https://github.com/mustak666  
+Description: The default theme for 2020, designed to fully utilize the flexibility of the block editor.  
+Tags: blog, one-column, custom-background, custom-colors, custom-logo, custom-menu, editor-style, featured-images,  
+footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments,  
+translation-ready, block-styles, wide-blocks, accessibility-ready  
+Version: 1.0.0  
+Requires at least: 4.6  
+Tested up to: 6.6
+Requires PHP: 7.4   
+License URI: http://www.gnu.org/licenses/gpl-2.0.html  
+Text Domain: kindaid  
+This theme, like WordPress itself, is licensed under the GPL.  
+Use it to create something awesome, enjoy the process, and share your knowledge with others.
+License: GNU General Public License v2 or later
+Copyright: © 2025 Kindaid Theme. All rights reserved.
+
+*/
+
+body .tp-main-menu nav ul li .sub-menu.sub-menu-left {
+    left: auto !important;
+    right: 0;
+}
+
+body .tp-main-menu nav ul li .sub-menu.sub-menu-left .sub-menu.sub-menu-left {
+    left: auto !important;
+    right: 102%;
+}
+body .mc4wp-form-fields {
+    position: relative;
+}
+.tp-footer-subscribe.p-relative.mb-30 p {
+    display: none;
+}
+.tp-footer-logo.mb-25 a img {
+    max-width: 108px;
+}
+
+body .tp-postbox-content, .tp-postbox-content-details {
+    padding: 30px 35px 30px 35px;
+}
+body.admin-bar .header-sticky {
+  top: 30px;
+}
+
+.tp-widget-sidebar.widget_search ,.tp-widget-sidebar.widget_sidebar_support_widget {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+
+
+

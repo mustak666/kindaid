@@ -1,0 +1,13 @@
+@use '../../utils' as *;
+
+.tp-error{
+    &-title{
+        font-size: 200px;
+        margin-bottom: 20px;
+    }
+    &-sub-title{
+        font-size: 25px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+}
