@@ -1,8 +1,57 @@
 <?php
+// ===============================
+// Get All Categories
+// ===============================
+function post_cat($taxonomy = 'category') {
+    $categories = get_categories(array(
+        'taxonomy'   => $taxonomy,
+        'orderby'    => 'name',
+        'order'      => 'ASC',
+    ));
 
+    $cat_list = [];
+    foreach ($categories as $cat) {
+        $cat_list[$cat->slug] = $cat->name;
+    }
 
+    return $cat_list;
+}
 
+// ===============================
+// Get All Posts (by post type)
+// ===============================
+function get_all_post($post_type_name = 'post') {
+    $posts = get_posts(array(
+        'post_type' => $post_type_name,
+        'orderby'   => 'title',
+        'order'     => 'ASC',
+        'numberposts' => -1 // সব পোস্ট আনার জন্য
+    ));
 
+    $posts_list = [];
+    foreach ($posts as $post) {
+        $posts_list[$post->ID] = $post->post_title;
+    }
+
+    return $posts_list;
+}
+
+// Get category slug or name
+function donacion_get_cat_data($categories = [], $delimiter = ' ', $term = 'slug') {
+    $slugs = [];
+
+    foreach ($categories as $cat) {
+        if($term === 'slug') {
+            $slugs[] = $cat->slug;
+        }
+
+        if($term === 'name') {
+            $slugs[] = $cat->name;
+        }
+    }
+
+    return implode($delimiter, $slugs);
+}
 // custom kses post 
 function kd_kses( $custom_kses_post = '' ) {
 

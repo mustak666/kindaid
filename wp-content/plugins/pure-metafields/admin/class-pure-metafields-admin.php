@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  * The admin-specific functionality of the plugin.
  *
  * @link       https://themepure.net
- * @since      1.3.1
+ * @since      1.4.8
  *
  * @package    tpmeta
  * @subpackage tpmeta/admin

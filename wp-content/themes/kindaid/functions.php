@@ -97,6 +97,24 @@ if ( class_exists( 'Kirki' ) ) {
  */
 function kindaid_widgets() {
 	register_sidebar( array(
+		'name'          => __( 'Event Sidebar', 'kindaid' ),
+		'id'            => 'event_sidebar',
+		'description'   => __( 'Widgets in this area will be shown on Event Sidebar', 'kindaid' ),
+		'before_widget' => '<div id="%1$s" class="tp-event-sidebar mb-20 %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="tp-widget-main-title mb-35">',
+		'after_title'   => '</h3>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Campain Sidebar', 'kindaid' ),
+		'id'            => 'campain_sidebar',
+		'description'   => __( 'Widgets in this area will be shown on Blog Sidebar', 'kindaid' ),
+		'before_widget' => '<div id="%1$s" class="tp-widget-sidebar mb-20 %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="tp-widget-main-title mb-25">',
+		'after_title'   => '</h3>',
+	) );
+	register_sidebar( array(
 		'name'          => __( 'Blog Sidebar', 'kindaid' ),
 		'id'            => 'blog_sidebar',
 		'description'   => __( 'Widgets in this area will be shown on Blog Sidebar', 'kindaid' ),

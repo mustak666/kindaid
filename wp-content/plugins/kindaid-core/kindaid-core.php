@@ -14,6 +14,8 @@
 
 
 
+// include_once('inc/custom-widgets/event-date-widget.php');
+include_once('inc/custom-widgets/event-letest-post.php');
 include_once('inc/custom-widgets/blog-author-info.php');
 include_once('inc/custom-widgets/blog-sidebar-support.php');
 include_once('inc/custom-widgets/footer-contect-info-2.php');
@@ -38,6 +40,30 @@ add_action( 'elementor/elements/categories_registered', 'kindaid_add_elementor_w
 
 
 function register_kindaid_widget( $widgets_manager ) {
+	require_once( __DIR__ . '/widgets/event-post-long.php' );
+	require_once( __DIR__ . '/widgets/event-post.php' );
+	require_once( __DIR__ . '/widgets/misson.php' );
+	require_once( __DIR__ . '/widgets/hero-video.php' );
+	require_once( __DIR__ . '/widgets/step-box.php' );
+	require_once( __DIR__ . '/widgets/gallery.php' );
+	require_once( __DIR__ . '/widgets/testimonail.php' );
+	require_once( __DIR__ . '/widgets/about.php' );
+	require_once( __DIR__ . '/widgets/services-list.php' );
+	require_once( __DIR__ . '/widgets/hero-slider.php' );
+	if(function_exists('charitable')){
+		require_once( __DIR__ . '/widgets/causes-slider.php' );
+		require_once( __DIR__ . '/widgets/causes-post.php' );
+	}
+	require_once( __DIR__ . '/widgets/blog-post.php' );
+	require_once( __DIR__ . '/widgets/brand.php' );
+	require_once( __DIR__ . '/widgets/faq.php' );
+	require_once( __DIR__ . '/widgets/team.php' );
+	require_once( __DIR__ . '/widgets/buttons.php' );
+	require_once( __DIR__ . '/widgets/choose.php' );
+	require_once( __DIR__ . '/widgets/section-title.php' );
+	require_once( __DIR__ . '/widgets/fect.php' );
+	require_once( __DIR__ . '/widgets/join.php' );
+	require_once( __DIR__ . '/widgets/services.php' );
 	require_once( __DIR__ . '/widgets/hero.php' );
 }
 add_action( 'elementor/widgets/register', 'register_kindaid_widget' );
