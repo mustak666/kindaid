@@ -86,21 +86,21 @@ class EventImporter implements PostImporterInterface {
             ];
 
             $location              = ! empty( $row['location'] ) ? sanitize_text_field( $row['location'] ) : '';
-            $ticket_variations     = ! empty( $row['ticket_variations'] ) ? $row['ticket_variations'] : '';
-            $event_socials         = ! empty( $row['event_socials'] ) ? $row['event_socials'] : '';
-            $event_schedule        = ! empty( $row['schedules'] ) ? $row['schedules'] : '';
-            $event_faq             = ! empty( $row['faq'] ) ? $row['faq'] : '';
-            $attendee_extra_fields = ! empty( $row['extra_fields'] ) ? $row['extra_fields'] : '';
+            $ticket_variations     = ! empty( $row['ticket_variations'] ) ? etn_sanitize_array_input( $row['ticket_variations'] ) : '';
+            $event_socials         = ! empty( $row['event_socials'] ) ? etn_sanitize_array_input( $row['event_socials'] ) : '';
+            $event_schedule        = ! empty( $row['schedules'] ) ? etn_sanitize_array_input( $row['schedules'] ) : '';
+            $event_faq             = ! empty( $row['faq'] ) ? etn_sanitize_array_input( $row['faq'] ) : '';
+            $attendee_extra_fields = ! empty( $row['extra_fields'] ) ? etn_sanitize_array_input( $row['extra_fields'] ) : '';
 
-            $speaker                = ! empty( $row['speaker'] ) ? $row['speaker'] : '';
-            $speaker_group          = ! empty( $row['speaker_groups'] ) ? $row['speaker_groups'] : '';
-            $organizer              = ! empty( $row['organizer'] ) ? $row['organizer'] : '';
-            $organizer_group        = ! empty( $row['organizer_group'] ) ? $row['organizer_group'] : '';
-            $rsvp                   = ! empty( $row['rsvp'] ) ? $row['rsvp'] : '';
-            $categories             = ! empty( $row['categories'] ) ? $row['categories'] : '';
-            $tags                   = ! empty( $row['tags'] ) ? $row['tags'] : '';
+            $speaker                = ! empty( $row['speaker'] ) ? etn_sanitize_array_input( $row['speaker'] ) : '';
+            $speaker_group          = ! empty( $row['speaker_groups'] ) ? etn_sanitize_array_input( $row['speaker_groups'] ) : '';
+            $organizer              = ! empty( $row['organizer'] ) ? etn_sanitize_array_input( $row['organizer'] ) : '';
+            $organizer_group        = ! empty( $row['organizer_group'] ) ? etn_sanitize_array_input( $row['organizer_group'] ) : '';
+            $rsvp                   = ! empty( $row['rsvp'] ) ? etn_sanitize_array_input( $row['rsvp'] ) : '';
+            $categories             = ! empty( $row['categories'] ) ? etn_sanitize_array_input( $row['categories'] ) : '';
+            $tags                   = ! empty( $row['tags'] ) ? etn_sanitize_array_input( $row['tags'] ) : '';
 
-            
+
             $args['etn_event_location']    = $location;
             $args['etn_ticket_variations'] = $ticket_variations;
             $args['etn_event_socials']     = $event_socials;

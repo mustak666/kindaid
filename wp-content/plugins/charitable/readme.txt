@@ -2,9 +2,9 @@
 Contributors: WPCharitable, smub, dimensionmedia
 Tags: donation, donate, fundraising, crowdfunding, recurring donations
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 6.9.1
 Requires PHP: 7.2
-Stable tag: 1.8.9.1
+Stable tag: 1.8.9.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -268,6 +268,26 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 
 == Changelog ==
 
+= Donation Form & Fundraising Campaigns v1.8.9.5 =
+* FIX: Added additional checks to resolved issue with Stripe webhook that was causing a fatal error a certain scenario.
+* FIX: Allow more international characters into campaign title fields in campaign visual builder.
+* IMPROVED: Email shortcode processing with recursion prevention for better reliability.
+* IMPROVED: Added additional enhanced email error logging and diagnostics.
+
+= Donation Form & Fundraising Campaigns v1.8.9.4 =
+* FIX: Resolved seemingly missing social media icons in some campaign builder template previews in certain scenarios.
+* UPDATE: Improved campaign builder templates for cache busting.
+
+= Donation Form & Fundraising Campaigns v1.8.9.3 =
+* FIX: Resolved onboarding redirect issue in some scenarios.
+
+= Donation Form & Fundraising Campaigns v1.8.9.2 =
+* NEW: Email and donation form debugging tools in "System Info" in Charitable Tools.
+* UPDATE: Campaign template CSS now loads via REST API endpoint to resolve 500 errors on servers that block direct PHP file access.
+* FIX: Adjustments for PHP 8.4 and PHP 8.5 for better compatibility.
+* FIX: Adjustment in how email emails are registered and loaded for better potential compatibility in certain server configurations.
+* FIX: Minor translation and coding updates.
+
 = Donation Form & Fundraising Campaigns v1.8.9.1 =
 * FIX: Resolved issue where blank state screens were not displaying on campaigns and donations list pages when no items exist.
 * FIX: Fixed help button in campaign builder not navigating to documentation URL.
@@ -520,11 +540,5 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 * FIX: Resolved error on getting started screen after Stripe was connected.
 * FIX: Improved retrieval of campaign descriptions for legacy campaigns.
 * FIX: Resolved CSS issue in visual builder.
-
-= Donation Form & Fundraising Campaigns v1.8.1.13 =
-* UPDATE: Updated copy and links on getting started screen.
-* FIX: Minified starting screen CSS.
-* FIX: Resolved typos and PHP notices.
-* FIX: Updated additional text in admin UI to allow for translations.
 
 **[View entire donation form and fundraising platform changelog](https://plugins.svn.wordpress.org/charitable/trunk/CHANGELOG.md)**

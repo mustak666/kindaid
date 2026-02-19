@@ -18,29 +18,29 @@ class RevenueReport extends AbstractReport {
      *
      * @return  number
      */
-    public static function get_total_revenue( $dates = [] ) {
+    public static function get_total_revenue( $dates = [], $event_id = null ) {
         $total = 0;
-        $orders = OrderReport::get_orders( $dates );
+        $order_ids = OrderReport::get_orders( $dates, $event_id );
 
-        if ( $orders ) {
-            foreach( $orders as $order_id ) {
-                $order = new OrderModel( $order_id );
-                $total_price = floatval($order->total_price);
+        if ( empty( $order_ids ) ) {
+            return $total;
+        }
 
-                $raw_discount = $order->discount_total;
-                $float_discount = floatval($raw_discount);
+        // Batch-load all order meta in a single query
+        update_meta_cache( 'post', $order_ids );
 
-                $raw_tax = $order->tax_total;
-                $float_tax = floatval($raw_tax);
+        // Get tax display mode once, outside the loop
+        $tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
 
-                // Check WooCommerce tax display setting
-                $tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
-                
-                if ( $tax_display_mode === 'incl' ) {
-                    $total += $total_price - $float_discount;
-                } else {
-                    $total += $total_price - $float_discount + $float_tax;
-                }
+        foreach ( $order_ids as $order_id ) {
+            $total_price    = floatval( get_post_meta( $order_id, 'total_price', true ) );
+            $float_discount = floatval( get_post_meta( $order_id, 'discount_total', true ) );
+            $float_tax      = floatval( get_post_meta( $order_id, 'tax_total', true ) );
+
+            if ( $tax_display_mode === 'incl' ) {
+                $total += $total_price - $float_discount;
+            } else {
+                $total += $total_price - $float_discount + $float_tax;
             }
         }
 

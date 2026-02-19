@@ -103,7 +103,7 @@ use Etn\Utils\Helper;
 							                        if( is_array( $checkbox_arr ) && ! empty( $checkbox_arr ) ) {
 								                        $extra_field_saved_value_arr = [];
 								                        if ( !empty( $extra_field_saved_value ) ) {
-									                        $extra_field_saved_value_arr = maybe_unserialize( $extra_field_saved_value );
+									                        $extra_field_saved_value_arr = etn_safe_decode( $extra_field_saved_value );
 								                        }
 								                        ?>
                                                         <div class="etn-checkbox-field-wrap">
@@ -210,7 +210,7 @@ use Etn\Utils\Helper;
                                                     if( is_array( $checkbox_arr ) && ! empty( $checkbox_arr ) ) {
                                                         $extra_field_saved_value_arr = [];
                                                         if ( !empty( $extra_field_saved_value ) ) {
-                                                            $extra_field_saved_value_arr = maybe_unserialize( $extra_field_saved_value );
+                                                            $extra_field_saved_value_arr = etn_safe_decode( $extra_field_saved_value );
                                                         }
                                                         ?>
                                                         <div class="etn-checkbox-field-wrap">

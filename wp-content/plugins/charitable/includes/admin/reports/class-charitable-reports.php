@@ -1586,8 +1586,17 @@ if ( ! class_exists( 'Charitable_Reports' ) ) :
 
 			$args = wp_parse_args( $args, $defaults );
 
-			// break up array into individual vars.
-			extract( $args ); // phpcs:ignore
+			// Extract individual variables from args array.
+			$activity_filter_types = $args['activity_filter_types'] ?? array();
+			$activity_action_types = $args['activity_action_types'] ?? array();
+			$start_date            = $args['start_date'] ?? false;
+			$end_date              = $args['end_date'] ?? false;
+			$status                = $args['status'] ?? false;
+			$campaign_id           = $args['campaign_id'] ?? false;
+			$category_id           = $args['category_id'] ?? false;
+			$limit                 = $args['limit'] ?? false;
+			$offset                = $args['offset'] ?? false;
+			$ppage                 = $args['ppage'] ?? false;
 
 			if ( ! class_exists( 'Charitable_Admin_Activities' ) || ! class_exists( 'Charitable_Donation_Activities_DB' ) || ! class_exists( 'Charitable_Campaign_Activities_DB' ) ) {
 				return;
@@ -1937,8 +1946,10 @@ if ( ! class_exists( 'Charitable_Reports' ) ) :
 
 			$args = wp_parse_args( $args, $defaults );
 
-			// break up array into individual vars.
-			extract( $args ); // phpcs:ignore
+			// Extract individual variables from args array.
+			$limit  = $args['limit'] ?? false;
+			$offset = $args['offset'] ?? false;
+			$ppage  = $args['ppage'] ?? false;
 
 			if ( ! $offset && $ppage && $limit ) {
 				$offset = ( $ppage - 1 ) * $limit;
@@ -2212,8 +2223,13 @@ if ( ! class_exists( 'Charitable_Reports' ) ) :
 
 			$args = wp_parse_args( $args, $defaults );
 
-			// break up array into individual vars.
-			extract( $args ); // phpcs:ignore
+			// Extract individual variables from args array.
+			$report_type = $args['report_type'] ?? 'overview';
+			$start_date  = $args['start_date'] ?? false;
+			$end_date    = $args['end_date'] ?? false;
+			$post_status = $args['post_status'] ?? 'charitable-completed';
+			$campaign_id = $args['campaign_id'] ?? false;
+			$category_id = $args['category_id'] ?? false;
 
 			// Check the post_status and set it to the default if it's not a valid status.
 			if ( ! in_array( $post_status, array( 'charitable-completed', 'charitable-pending', 'charitable-failed', 'charitable-cancelled', 'charitable-refunded' ), true ) ) {
@@ -2464,8 +2480,15 @@ if ( ! class_exists( 'Charitable_Reports' ) ) :
 
 			$args = wp_parse_args( $args, $defaults );
 
-			// break up array into individual vars.
-			extract( $args ); // phpcs:ignore
+			// Extract individual variables from args array.
+			$report_type = $args['report_type'] ?? 'donors-top';
+			$start_date  = $args['start_date'] ?? false;
+			$end_date    = $args['end_date'] ?? false;
+			$campaign_id = $args['campaign_id'] ?? false;
+			$category_id = $args['category_id'] ?? false;
+			$limit       = $args['limit'] ?? false;
+			$offset      = $args['offset'] ?? false;
+			$ppage       = $args['ppage'] ?? false;
 
 			// Determine if this particular report gets sample data, or if not if it's has been cached recently.
 			$this->donors = ! charitable_is_pro() ? $this->get_data_sample( $report_type ) : false; // $this->get_cached_report( $report_type, $start_date, $end_date, false, $campaign_id, $category_id );

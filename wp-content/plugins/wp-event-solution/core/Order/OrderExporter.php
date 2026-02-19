@@ -85,7 +85,7 @@ class OrderExporter implements PostExporterInterface {
             $total_tax = floatval(get_post_meta( $order->id, 'tax_total', true ));
             $total_discount = floatval(get_post_meta( $order->id, 'discount_total', true ));
             $tax_display_mode = get_post_meta( $order->id, 'tax_display_mode', true );
-            $extra_fields = json_encode(maybe_unserialize(get_post_meta( $order->id, 'extra_fields', true )));
+            $extra_fields = json_encode(etn_safe_decode(get_post_meta( $order->id, 'extra_fields', true )));
             
             $final_total = $order->total_price - $total_discount;
 

@@ -13,7 +13,8 @@ if (is_array($data) && !empty($data)) {
     $schedule_meta = get_post_meta($schedule_data->ID);
     $schedule_date = strtotime($schedule_meta['etn_schedule_date'][0]);
     $schedule_date = date_i18n(get_option("date_format"), $schedule_date);
-    $schedule_topics = unserialize($schedule_meta['etn_schedule_topics'][0]);
+    $schedule_topics_raw = etn_safe_decode($schedule_meta['etn_schedule_topics'][0] ?? '');
+    $schedule_topics = is_array($schedule_topics_raw) ? $schedule_topics_raw : [];
 
     $time_format = Helper::get_option("time_format");
     $time_format = !empty($time_format) ? $time_format : '12';

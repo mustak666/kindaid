@@ -46,7 +46,8 @@ $i = -1;
             $j++;
             $schedule_meta = get_post_meta($post->ID);
             $schedule_date = strtotime($schedule_meta['etn_schedule_date'][0]);
-            $schedule_topics = unserialize($schedule_meta['etn_schedule_topics'][0]);
+            $schedule_topics_raw = etn_safe_decode($schedule_meta['etn_schedule_topics'][0] ?? '');
+            $schedule_topics = is_array($schedule_topics_raw) ? $schedule_topics_raw : [];
             $schedule_date = date_i18n("d M", $schedule_date);
             $active_class = (($j == 0) ? 'tab-active' : ' ');
             ?>

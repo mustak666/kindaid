@@ -572,7 +572,7 @@ class Hooks {
                     $meta_value = is_array( $meta_value ) ? $meta_value[0] : $meta_value;
 
                     if ( is_serialized( $meta_value ) ) {
-                        $meta_value = maybe_unserialize( $meta_value );
+                        $meta_value = etn_safe_decode( $meta_value );
                     }
 
                     update_post_meta( $recurrence_id, $meta_key, $meta_value );

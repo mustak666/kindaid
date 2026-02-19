@@ -11,21 +11,21 @@ class Kindaid_Event_Sidebar_Letest_Post_Widget extends WP_Widget {
 
     // Frontend output
     public function widget($args, $instance) {
-        echo wp_kses_post($args['before_widget']);
+        echo kd_kses($args['before_widget']);
 
         $widget_title = !empty($instance['widget_title']) ? $instance['widget_title'] : __('Recent Posts', 'kindaid');
         $post_count = !empty($instance['post_count']) ? absint($instance['post_count']) : 3;
         $post_id = get_the_ID();
-        $args = array(
+        $post_args = array(
             'post_type'           => 'etn',
             'posts_per_page'      => $post_count,
             'ignore_sticky_posts' => true,
         );
         
         if ( ! empty( $post_id ) ) {
-            $args['post__not_in'] = array( $post_id );
+            $post_args['post__not_in'] = array( $post_id );
         }
-        $query = new WP_Query( $args );
+        $query = new WP_Query( $post_args );
         ?>
         <div class="mb-20">
             <?php if(!empty($widget_title)):?>
@@ -55,7 +55,7 @@ class Kindaid_Event_Sidebar_Letest_Post_Widget extends WP_Widget {
             <?php endif;?>
         </div>
     <?php
-        echo wp_kses_post($args['after_widget']);
+        echo kd_kses($args['after_widget']);
     }
 
     // Backend form

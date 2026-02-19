@@ -99,7 +99,6 @@ if ( ( ETN_DEMO_SITE == true ) || ( ETN_DEMO_SITE === false && "event-one" === $
      */
     add_action( 'etn_before_single_event_details', 'etn_before_single_event_details' );
 
-
     /**
      * @see etn_before_single_event_container()
      */

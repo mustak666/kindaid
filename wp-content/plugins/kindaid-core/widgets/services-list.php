@@ -28,6 +28,27 @@ class Kindaid_Services_List extends \Elementor\Widget_Base {
 	}
 	protected function ragister_tab_controls(): void {
 
+		$this->start_controls_section(
+			'services_layout',
+			[
+				'label' => esc_html__( 'Services Layout', 'kindaid-core' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+	     	);
+			$this->add_control(
+				'layout_style',
+				[
+					'label' => esc_html__( 'Layout Style', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::SELECT,
+					'default' => 'layout_default',
+					'options' => [
+						'layout_with_img' => esc_html__( 'Layout With Image', 'textdomain' ),
+						'layout_default' => esc_html__( 'Layout Default', 'textdomain' ),
+					],
+				]
+			);
+		$this->end_controls_section();
+
 		// Services List 
 		$this->start_controls_section(
 			'services_list',
@@ -113,13 +134,58 @@ class Kindaid_Services_List extends \Elementor\Widget_Base {
 					'type' => \Elementor\Controls_Manager::TEXTAREA,
 				]
 			);
+			$this->add_control(
+				'bg_img',
+				[
+					'label' => esc_html__( 'Bg Image', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::MEDIA,
+					'default' => [
+						'url' => \Elementor\Utils::get_placeholder_image_src(),
+					],
+					'condition' => [
+						'layout_style' => 'layout_with_img',
+					],
+				]
+			);
 		$this->end_controls_section();
 		// Services List 
 	}
 
 	protected function render(): void {
 		$settings = $this->get_settings_for_display();
+		if(!empty( $settings['bg_img'])){
+			$image_url = (!empty( $settings['bg_img']['id'])) ? wp_get_attachment_image_url( $settings['bg_img']['id'], 'full' ) :  $settings['bg_img']['url'];
+			$image_alt = get_post_meta( $settings['bg_img']['id'], '_wp_attachment_image_alt', true );
+		}
 		?>
+		<?php if($settings['layout_style'] == 'layout_with_img'):?>
+			<div class="tp-service-3-item fix icon-anime-wrap position-relative mb-30 wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".3s">
+
+				<div class="tp-service-3-thumb position-relative">
+				   <img class="w-100" src="<?php echo esc_url($image_url);?>" alt="<?php echo esc_attr($image_alt);?>">
+				</div>
+
+				<div class="tp-service-3-top">
+					<span class="tp-service-icon icon-anime mb-25 d-inline-block">
+						<?php if($settings['icon_style'] == 'fontawesome'):?>
+							<?php \Elementor\Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] ); ?>
+						<?php elseif($settings['icon_style'] == 'img'):?>
+							<?php echo wp_get_attachment_image( $settings['image_icon']['id'], 'full' );?>
+						<?php else:?>
+							<?php echo kd_kses($settings['svg']);?>
+						<?php endif;?>
+					</span>
+				<?php if(!empty($settings['title'])):?>
+				   <h3 class="tp-service-title text-uppercase mb-15"><a href="<?php echo esc_url($settings['url']);?>" class="common-underline"><?php echo kd_kses($settings['title']);?></a></h3>
+				<?php endif;?>
+			</div>
+				<?php if(!empty($settings['deg'])):?>
+					<div class="tp-service-3-dec">
+					<p class="mb-0"><?php echo kd_kses($settings['deg']);?></p>
+					</div>
+				<?php endif;?>
+			</div>
+		<?php else:?>
 			<div class="tp-service-item tp-service-2-item icon-anime-wrap wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".3s" data-bg-color="#ffca24">
 				<span class="tp-service-icon icon-anime mb-75 d-inline-block">
 					<?php if($settings['icon_style'] == 'fontawesome'):?>
@@ -137,6 +203,7 @@ class Kindaid_Services_List extends \Elementor\Widget_Base {
 				  <p class="tp-service-dec mb-0"><?php echo esc_html($settings['deg']);?></p>
 				<?php endif;?>
 			</div>
+		<?php endif;?>
 		<?php
 	}
 

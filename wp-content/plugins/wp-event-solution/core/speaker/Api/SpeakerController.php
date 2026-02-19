@@ -151,7 +151,7 @@ class SpeakerController extends WP_REST_Controller {
      */
     public function get_items( $request ) {
 
-        $per_page = ! empty( $request['per_page'] ) ? intval( $request['per_page'] ) : 20;
+        $per_page = ! empty( $request['per_page'] ) ? intval( $request['per_page'] ) : -1;
         $paged    = ! empty( $request['paged'] ) ? intval( $request['paged'] ) : 1;
         $type     = ! empty( $request['category'] ) ?  $request['category']  : [];
         $group    = ! empty( $request['speaker_group'] ) ? $request['speaker_group'] : '';
@@ -469,9 +469,9 @@ class SpeakerController extends WP_REST_Controller {
         
         $user = get_user_by('email', $data['etn_speaker_website_email']);
         
-        if ($user && $speaker->get_speaker_website_email() != $data['etn_speaker_website_email']) {
+        if ($user && !empty($speaker->get_speaker_website_email()) && $speaker->get_speaker_website_email() != $data['etn_speaker_website_email']) {
             
-            $assign_role = $this->assign_role_for_existing_user($data);
+            $assign_role = $this->assign_role_for_existing_user($data,true);
             
             if (is_wp_error($assign_role)) {
                 return $assign_role;
@@ -719,7 +719,7 @@ class SpeakerController extends WP_REST_Controller {
             
             if ( $category ) {
                 // Check if any of the categories are in the serialized meta value
-                if ( in_array( $category, maybe_unserialize( $meta_value ) ) ) {
+                if ( in_array( $category, etn_safe_decode( $meta_value ) ) ) {
                     $user_ids[] = $user->ID;
                 }
             }
@@ -848,7 +848,7 @@ class SpeakerController extends WP_REST_Controller {
      *
      * @return  array          [return description]
      */
-    private function assign_role_for_existing_user( $data ) {
+    private function assign_role_for_existing_user( $data, $is_for_update=false ) {
         $email  = $data['etn_speaker_website_email'];
         $roles  = $data['etn_speaker_category'];
         $groups = $data['etn_speaker_group'];
@@ -871,7 +871,7 @@ class SpeakerController extends WP_REST_Controller {
 
         $exists_with_role = empty( array_diff( $updated_roles, $user->roles ) );
 
-        if ( $exists_with_role ) {
+        if ( $exists_with_role && !$is_for_update ) {
             return new WP_Error( 'organizer_speaker_exists', __( 'Speaker or Organizer already exists', 'eventin' ), ['status' => 422] );
         }
 

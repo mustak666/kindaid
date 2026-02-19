@@ -124,16 +124,17 @@ class Event_Model extends Post_Model {
         $status     = get_post_status( $this->id );
         $timezone   = $this->event_timezone ? etn_create_date_timezone( $this->event_timezone ) : 'Asia/Dhaka';
 
-        $start_date_time = $start_date . ' ' . $start_time;
-        $end_date_time   = $end_date . ' ' . $end_time;
+        $start_date_time = str_replace( ',', '', $start_date . ' ' . $start_time );
+        $end_date_time   = str_replace( ',', '', $end_date . ' ' . $end_time );
 
         if (str_contains(strtolower($start_date_time), 'invalid') || str_contains(strtolower($end_date_time), 'invalid')) {
             return $status;
         }
 
         // Create a DateTime object for the start date and time in the given timezone
-        $start_date = new \DateTime( $start_date_time, new \DateTimeZone( $timezone ) );
-        $end_date   = new \DateTime( $end_date_time, new \DateTimeZone( $timezone ) );
+        $tz         = new \DateTimeZone( $timezone );
+        $start_date = new \DateTime( $start_date_time, $tz );
+        $end_date   = new \DateTime( $end_date_time, $tz );
     
         // Create a DateTime object for the current date and time in the given timezone
         $current_date = new \DateTime('now', new \DateTimeZone( $timezone ) );
@@ -407,10 +408,10 @@ class Event_Model extends Post_Model {
      *
      * @return  array Attendee data
      */
-    public function get_attendees() {
+    public function get_attendees($status = ['publish', 'trash']) {
         $attendee_obect = new Attendee_Model();
 
-        $attendees = $attendee_obect->get_attendees_by( 'etn_event_id', $this->id );
+        $attendees = $attendee_obect->get_attendees_by( 'etn_event_id', $this->id, $status );
 
         return $attendees;
     }

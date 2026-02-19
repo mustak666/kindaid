@@ -221,7 +221,7 @@ class Kindaid_Causes_Slider extends \Elementor\Widget_Base {
 							$goal = charitable_format_money($campaign->get_goal());
 							$raised = charitable_format_money($campaign->get_donated_amount ());
 							$button_text = $campaign->get('donate_button_text',true);
-							$percentage = ($campaign->get_donated_amount () > 0) ?($campaign->get_donated_amount () / $campaign->get_goal ()) * 100 : 0;
+							$percentage = ($campaign->get_donated_amount () > 0) ? round(($campaign->get_donated_amount () / $campaign->get_goal ()) * 100 ): 0;
 						?>
                         <div class="swiper-slide">
 							<?php if($settings['layout_style'] == 'layout_bg') : ?>

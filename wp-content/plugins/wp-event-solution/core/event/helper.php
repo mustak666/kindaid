@@ -45,6 +45,8 @@ class Helper {
 	public function currency_with_position( $price, $order = null ) {
 		$payment_method = $order->payment_method ?? '';
 
+		$currency_symbol = $this->get_currency();
+
 		$currency_position = 'left';
 		if ( class_exists( 'WooCommerce' ) ) {
 			$currency_position = get_option( 'woocommerce_currency_pos', 'left' );
@@ -90,7 +92,7 @@ class Helper {
 		if ( $location_type == 'existing_location' ) {
 			$location = get_post_meta( $event_id, 'etn_event_location', true );
 		} else {
-			$location_arr = maybe_unserialize( get_post_meta( $event_id, 'etn_event_location_list', true ) );
+			$location_arr = etn_safe_decode( get_post_meta( $event_id, 'etn_event_location_list', true ) );
 
 			if ( ! empty( $location_arr ) && is_array( $location_arr ) ) {
 				$location_names = [];

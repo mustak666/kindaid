@@ -126,7 +126,7 @@ class V_4_0_0 implements UpdateInterface {
             'rsvp_attendee_form_limit'       => get_post_meta( $event_id, 'etn_rsvp_attendee_form_limit', true ),
             'rsvp_miminum_attendee_to_start' => get_post_meta( $event_id, 'etn_rsvp_miminum_attendee_to_start', true ),
             'show_rsvp_attendee'             => get_post_meta( $event_id, 'etn_show_rsvp_attendee', true ),
-            'rsvp_form_type'             => unserialize( get_post_meta( $event_id, 'etn_rsvp_form_type', true ) ),
+            'rsvp_form_type'             => etn_safe_decode( get_post_meta( $event_id, 'etn_rsvp_form_type', true ) ),
         ];
 
         return $rsvp;

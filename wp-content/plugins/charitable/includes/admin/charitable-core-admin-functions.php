@@ -842,7 +842,15 @@ function charitable_admin_include_html( $template_name, $args = array(), $extrac
 
 	if ( $extract && is_array( $args ) ) {
 
-		$created_vars_count = extract( $args, EXTR_SKIP ); // phpcs:ignore WordPress.PHP.DontExtract
+		// Extract variables for template, checking for conflicts to prevent scope modification.
+		$created_vars_count = 0;
+		foreach ( $args as $var_name => $var_value ) {
+			// Only create variable if it doesn't already exist (equivalent to EXTR_SKIP).
+			if ( ! isset( $$var_name ) ) {
+				$$var_name = $var_value;
+				$created_vars_count++;
+			}
+		}
 
 		// Protecting existing scope from modification.
 		if ( count( $args ) !== $created_vars_count ) {
@@ -967,7 +975,7 @@ function charitable_can_do( $what, $type ) {
 function charitable_verify_ssl() {
 
 	// Run a security check.
-	check_ajax_referer( 'charitable-admin', 'nonce' );
+	check_ajax_referer( 'charitable-admin-tools', 'nonce' );
 
 	// Check for permissions.
 	if ( ! charitable_current_user_can( 'manage_options' ) ) {

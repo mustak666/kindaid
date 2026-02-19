@@ -41,7 +41,7 @@ class Kindaid_Event_Post_Long extends \Elementor\Widget_Base {
 				[
 					'label' => esc_html__( 'Layout Style', 'textdomain' ),
 					'type' => \Elementor\Controls_Manager::SELECT,
-					'default' => 'layout_default',
+					'default' => 'events_layout_1',
 					'options' => [
 						'events_layout_1' => esc_html__( 'Events Layout 01', 'textdomain' ),
 						'events_layout_2' => esc_html__( 'Events Layout 02', 'textdomain' ),
@@ -75,7 +75,7 @@ class Kindaid_Event_Post_Long extends \Elementor\Widget_Base {
 					'type' => \Elementor\Controls_Manager::SELECT2,
 					'label_block' => true,
 					'multiple' => true,
-					'options' => post_cat(),
+					'options' => post_cat('etn_category'),
 				]
 			);
 			$this->add_control(
@@ -85,7 +85,7 @@ class Kindaid_Event_Post_Long extends \Elementor\Widget_Base {
 					'type' => \Elementor\Controls_Manager::SELECT2,
 					'label_block' => true,
 					'multiple' => true,
-					'options' => post_cat(),
+					'options' => post_cat('etn_category'),
 				]
 			);
 			$this->add_control(
@@ -95,7 +95,7 @@ class Kindaid_Event_Post_Long extends \Elementor\Widget_Base {
 					'type' => \Elementor\Controls_Manager::SELECT2,
 					'label_block' => true,
 					'multiple' => true,
-					'options' => get_all_post(),
+					'options' => get_all_post('etn'),
 				]
 			);
 

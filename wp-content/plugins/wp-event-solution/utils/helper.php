@@ -3187,6 +3187,7 @@
                         $args = [
                             'post_parent' => $single_event_id,
                             'post_type'   => 'etn',
+                            'post_status' => current_user_can('edit_posts') ? ['publish', 'private', 'draft', 'pending'] : 'publish',
                         ];
                         $children = get_children($args);
 
@@ -4366,7 +4367,7 @@
 
             foreach ($post_ids as $post_id) {
                 $meta_value       = get_post_meta($post_id, 'etn_event_location', true);
-                $meta_value_array = maybe_unserialize($meta_value);
+                $meta_value_array = etn_safe_decode($meta_value);
                 if (isset($meta_value_array['address']) && $meta_value_array['address'] == esc_html($value)) {
                     return $meta_value_array['address'];
                 }
@@ -4392,62 +4393,209 @@
             }
         }
 
-        /**
-         * Get sold tickets count from order by each event
-         *
-         * @param int $event_id Event ID
-         * @return array variation_slug => sold_count
-         */
-        public static function etn_get_sold_tickets_by_event($event_id)
-        {
-            global $wpdb;
+    /**
+     * Get sold tickets count from order by each event
+     *
+     * @param int $event_id Event ID
+     * @return array variation_slug => sold_count
+     */
+    public static function etn_get_sold_tickets_by_event_legacy($event_id)
+    {
+        global $wpdb;
 
-            $sold_counts = [];
+        $sold_counts = [];
 
-            // Get all completed orders for this event
-            $orders = get_posts([
-                'post_type'   => 'etn-order',
-                'post_status' => 'any',
-                'numberposts' => -1,
-                'meta_query'  => [
-                    [
-                        'key'   => 'event_id',
-                        'value' => $event_id,
-                    ],
-                    [
-                        'key'   => 'status',
-                        'value' => 'completed',
-                    ],
+        // Get all completed orders for this event
+        $orders = get_posts([
+            'post_type'   => 'etn-order',
+            'post_status' => 'any',
+            'numberposts' => -1,
+            'meta_query'  => [
+                [
+                    'key'   => 'event_id',
+                    'value' => $event_id,
                 ],
-            ]);
+                [
+                    'key'   => 'status',
+                    'value' => 'completed',
+                ],
+            ],
+        ]);
 
-            if (! empty($orders)) {
-                foreach ($orders as $order) {
-                    $tickets = get_post_meta($order->ID, 'tickets', true);
+        if (! empty($orders)) {
+            foreach ($orders as $order) {
+                $tickets = get_post_meta($order->ID, 'tickets', true);
 
-                    if (! empty($tickets) && is_serialized($tickets)) {
-                        $tickets = maybe_unserialize($tickets);
-                    }
+                if (! empty($tickets) && is_serialized($tickets)) {
+                    $tickets = etn_safe_decode($tickets);
+                }
 
-                    if (is_array($tickets)) {
-                        foreach ($tickets as $ticket) {
-                            if (! empty($ticket['ticket_slug']) && ! empty($ticket['ticket_quantity'])) {
-                                $slug = sanitize_text_field($ticket['ticket_slug']);
-                                $qty  = intval($ticket['ticket_quantity']);
+                if (is_array($tickets)) {
+                    foreach ($tickets as $ticket) {
+                        if (! empty($ticket['ticket_slug']) && ! empty($ticket['ticket_quantity'])) {
+                            $slug = sanitize_text_field($ticket['ticket_slug']);
+                            $qty  = intval($ticket['ticket_quantity']);
 
-                                if (! isset($sold_counts[$slug])) {
-                                    $sold_counts[$slug] = 0;
-                                }
-
-                                $sold_counts[$slug] += $qty;
+                            if (! isset($sold_counts[$slug])) {
+                                $sold_counts[$slug] = 0;
                             }
+
+                            $sold_counts[$slug] += $qty;
                         }
                     }
                 }
             }
+        }
 
-		return (object)$sold_counts;
-	}
+        return (object)$sold_counts;
+    }
+
+    /**
+     * Get sold tickets count from order by each event
+     *
+     * @param int $event_id Event ID
+     * @return array variation_slug => sold_count
+     */
+    public static function etn_get_sold_tickets_by_event($event_id)
+    {
+        global $wpdb;
+
+        $table_name = $wpdb->prefix . 'etn_ticket_sales_summary';
+
+        // Check if table exists (fallback to old method if not)
+        $table_exists = $wpdb->get_var("SHOW TABLES LIKE '{$table_name}'") === $table_name;
+
+        if (!$table_exists) {
+            return self::etn_get_sold_tickets_by_event_legacy($event_id);
+        }                                                                                                                                                                             
+
+        $results = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT ticket_slug, sold_count FROM {$table_name} WHERE event_id = %d",
+                $event_id
+            )
+        );
+
+        $sold_counts = [];
+
+        if ($results) {
+            foreach ($results as $row) {
+                $sold_counts[$row->ticket_slug] = (int) $row->sold_count;
+            }
+        }
+
+        return (object) $sold_counts;
+    }
+
+    /**
+     * Increase count by ticket slug
+     *
+     * @param array $data
+     * @param int $event_id
+     * @return void
+     */
+    public static function increase_count_by_ticket_slug($data, $event_id)
+    {
+        global $wpdb;
+
+        $table = $wpdb->prefix . 'etn_ticket_sales_summary';
+
+        foreach ($data as $ticket) {
+            $ticket_slug = $ticket['ticket_slug'];
+            $ticket_quantity = isset($ticket['ticket_quantity']) ? (int) $ticket['ticket_quantity'] : 0;
+            // Check if record exists
+            $exists = $wpdb->get_var(
+                $wpdb->prepare(
+                    "SELECT COUNT(*) FROM {$table} WHERE event_id = %d AND ticket_slug = %s",
+                    $event_id,
+                    $ticket_slug
+                )
+            );
+
+            if ($exists) {
+                // Update existing record
+                $wpdb->query(
+                    $wpdb->prepare(
+                        "UPDATE {$table}
+                        SET sold_count = sold_count + %d,
+                            last_updated = NOW()
+                        WHERE event_id = %d
+                          AND ticket_slug = %s",
+                        $ticket_quantity,
+                        $event_id,
+                        $ticket_slug
+                    )
+                );
+            } else {
+                // Insert new record
+                $wpdb->insert(
+                    $table,
+                    [
+                        'event_id'     => $event_id,
+                        'ticket_slug'  => $ticket_slug,
+                        'sold_count'   => $ticket_quantity,
+                        'last_updated' => wp_date( 'Y-m-d H:i:s' ),
+                    ],
+                    ['%d', '%s', '%d', '%s']
+                );
+            }
+        }
+    }
+
+    /**
+     * Decrease count by ticket slug
+     *
+     * @param array $data
+     * @param int $event_id
+     * @return void
+     */
+    public static function decrease_count_by_ticket_slug($data, $event_id)
+    {
+        global $wpdb;
+
+        $table = $wpdb->prefix . 'etn_ticket_sales_summary';
+
+        foreach ($data as $ticket) {
+            $ticket_slug = $ticket['ticket_slug'];
+            $ticket_quantity = isset($ticket['ticket_quantity']) ? (int) $ticket['ticket_quantity'] : 0;
+            // Check if record exists
+            $exists = $wpdb->get_var(
+                $wpdb->prepare(
+                    "SELECT COUNT(*) FROM {$table} WHERE event_id = %d AND ticket_slug = %s",
+                    $event_id,
+                    $ticket_slug
+                )
+            );
+
+            if ($exists) {
+                // Update existing record
+                $wpdb->query(
+                    $wpdb->prepare(
+                        "UPDATE {$table}
+                        SET sold_count = GREATEST(0, sold_count - %d),
+                            last_updated = NOW()
+                        WHERE event_id = %d
+                          AND ticket_slug = %s",
+                        $ticket_quantity,
+                        $event_id,
+                        $ticket_slug
+                    )
+                );
+            } else {
+                // Insert new record with 0 count (can't go negative)
+                $wpdb->insert(
+                    $table,
+                    [
+                        'event_id'     => $event_id,
+                        'ticket_slug'  => $ticket_slug,
+                        'sold_count'   => 0,
+                        'last_updated' => wp_date( 'Y-m-d H:i:s' ),
+                    ],
+                    ['%d', '%s', '%d', '%s']
+                );
+            }
+        }
+    }
 
 	public static function get_user_role_by_user_id($user_id)
 	{

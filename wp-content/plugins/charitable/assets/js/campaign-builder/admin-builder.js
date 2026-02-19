@@ -612,7 +612,7 @@ var CharitableCampaignBuilder = window.CharitableCampaignBuilder || ( function( 
 			// $("head link[rel='stylesheet']").last().after('<link rel="stylesheet" id="charitable-builder-template-preview-theme-css-temp" href="' + charitable_builder.charitable_assets_dir + 'css/campaign-builder/themes/admin/' + templateID + '.php?' + colorQueryString + '" type="text/css" media="screen">');
 
 			if ( justColors === false ) {
-				$('link[id="charitable-builder-template-preview-theme-css"]').attr('href', charitable_builder.charitable_assets_dir + 'css/campaign-builder/themes/admin/' + templateID + '.php?' + colorQueryString );
+				$('link[id="charitable-builder-template-preview-theme-css"]').attr('href', charitable_builder.charitable_rest_url + 'campaign-css-admin/' + templateID + '?' + colorQueryString );
 			}
 
 			if ( whatChanged !== null ) {
@@ -639,7 +639,7 @@ var CharitableCampaignBuilder = window.CharitableCampaignBuilder || ( function( 
 		replaceCSSFile: function ( whatChanged, templateID, colorQueryString ) {
 
 			$('head').find('link#charitable-builder-template-preview-theme-colors-' + whatChanged + '-css').remove();
-			$('head').append('<link rel="stylesheet" data-color-type="' + whatChanged + '" id="charitable-builder-template-preview-theme-colors-temp" href="' + charitable_builder.charitable_assets_dir + 'css/campaign-builder/themes/admin/' + templateID + '-colors.php?' + colorQueryString + '" type="text/css" media="screen">');
+			$('head').append('<link rel="stylesheet" data-color-type="' + whatChanged + '" id="charitable-builder-template-preview-theme-colors-temp" href="' + charitable_builder.charitable_rest_url + 'campaign-css-admin/' + templateID + '-colors?' + colorQueryString + '" type="text/css" media="screen">');
 
 			$('#charitable-design-wrap').addClass('loading');
 
@@ -2103,7 +2103,7 @@ var CharitableCampaignBuilder = window.CharitableCampaignBuilder || ( function( 
 			}
 
 			// Clean the string.
-			title = title.replace(/[^a-z0-9 _.,!"'/$]/gi, '');
+			title = title.replace(/[^\w\s\u00C0-\u024F\u1E00-\u1EFF\u2C60-\u2C7F\uA720-\uA7FF _.,!"()'\/$[\]:@#%-]/gi, '');
 
 			// Should we allow a blank title even temp?
 			// if ( '' === $.trim(title) ) {

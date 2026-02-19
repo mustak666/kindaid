@@ -61,6 +61,15 @@ if ( ! class_exists( 'Charitable_Stripe_Payment_Intent' ) ) :
 		private $options;
 
 		/**
+		 * The destination account for Stripe Connect.
+		 *
+		 * @since 1.4.0
+		 *
+		 * @var   string|null
+		 */
+		private $destination;
+
+		/**
 		 * Create class object.
 		 *
 		 * @since 1.4.0

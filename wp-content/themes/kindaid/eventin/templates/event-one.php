@@ -78,7 +78,7 @@ if( ( ETN_DEMO_SITE === false ) || ( ETN_DEMO_SITE == true && ETN_EVENT_TEMPLATE
                                 <span><?php echo esc_html($location);?></span>
                             </div>
                         </div>
-                            <?php echo dynamic_sidebar('event_sidebar');?>
+                            <?php dynamic_sidebar('event_sidebar');?>
                         </div>
                     </div>
                 </div>

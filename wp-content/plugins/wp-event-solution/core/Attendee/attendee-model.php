@@ -70,10 +70,10 @@ class Attendee_Model extends Post_Model {
      *
      * @return  array
      */
-    public function get_attendees_by( $key, $value ) {
+    public function get_attendees_by( $key, $value, $post_status = ['publish', 'trash'] ) {
         $args = [
             'post_type'      => 'etn-attendee',
-            'post_status'    => ['publish', 'trash'],
+            'post_status'    => $post_status,
             'posts_per_page' => -1,
             'meta_query'     => [
                 [

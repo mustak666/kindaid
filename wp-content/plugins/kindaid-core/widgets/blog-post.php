@@ -104,8 +104,17 @@ class Kindaid_Blog_Post extends \Elementor\Widget_Base {
 				]
 			);
 
-
-
+			$this->add_control(
+				'pagination_switch',
+				[
+					'label' => esc_html__( 'Paginaion Switch', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::SWITCHER,
+					'label_on' => esc_html__( 'Show', 'textdomain' ),
+					'label_off' => esc_html__( 'Hide', 'textdomain' ),
+					'return_value' => 'yes',
+					'default' => 'yes',
+				]
+			);
 		$this->end_controls_section();
 		//  hero content
 	}
@@ -140,6 +149,7 @@ class Kindaid_Blog_Post extends \Elementor\Widget_Base {
 							<?php if( $query->have_posts() ):?>
 								<?php while($query->have_posts()): $query->the_post();
 								$categories = get_the_category(get_the_ID());
+								$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 							?>
 							<div class="col-xl-4 col-md-6">
 								<div class="tp-blog-item tp-event p-relative mb-30 wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".3s">
@@ -163,6 +173,23 @@ class Kindaid_Blog_Post extends \Elementor\Widget_Base {
 								</div>
 							</div>
 							<?php endwhile ; wp_reset_postdata(); endif;?>
+						<?php if(!empty($settings['pagination_switch'])):?>
+							<div class="col-12">
+								<div class="tp-pagination text-center mt-20 wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".4s">
+								<?php 
+									echo paginate_links( array(
+										'total'     => $query->max_num_pages,
+										'current'   => $paged,
+										'type'      => 'list',
+										'prev_text' => '<i class="far fa-arrow-left"></i>',
+										'next_text' => '<i class="far fa-arrow-right"></i>',
+										'end_size'  => 1, 
+										'mid_size'  => 1,
+									) );
+								?>
+								</div>
+							</div>
+						<?php endif;?>
 						</div>
 					</div>
 				</div>

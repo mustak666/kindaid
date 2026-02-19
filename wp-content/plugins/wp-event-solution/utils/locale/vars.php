@@ -5,11 +5,12 @@ $data = [
     'ajax_url'                    => admin_url( 'admin-ajax.php' ),
     'site_url'                    => site_url(),
     'admin_url'                   => admin_url(),
-    'admin_email'                 => get_option( 'admin_email' ),
+    'admin_email'                 => '',
     'assets_url'                  => \Wpeventin::plugin_url("assets"),
     'evnetin_pro_active'          => ( class_exists( 'Wpeventin_Pro' ) ) ? true : false,
     'locale_name'                 => strtolower( str_replace( '_', '-', get_locale() ) ),
     'start_of_week'               => get_option( 'start_of_week' ),
+    'calendar_start_of_week'      => get_option( 'start_of_week' ), // Week start for admin calendar view (0 = Sun, 1 = Mon, ..., 6 = Sat). Override via etn_locale_vars to customize.
     'author_id'                   => get_current_user_id(),
     'ticket_scanner_link'         => admin_url( '/edit.php?post_type=etn-attendee' ),
     'post_id'                     => get_the_ID(),

@@ -57,6 +57,8 @@ class ScheduleImporter implements PostImporterInterface {
             if ( 'text/csv' == $file_type ) {
                 $slots = json_decode( $slots, true );
             }
+            // Sanitize slots to prevent PHP Object Injection
+            $slots = etn_sanitize_array_input( $slots );
 
             $args = [
                 'etn_schedule_title'    => ! empty( $row['program_title'] ) ? $row['program_title'] : '',

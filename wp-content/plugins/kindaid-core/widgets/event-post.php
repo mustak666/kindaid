@@ -53,7 +53,7 @@ class Kindaid_Event_Post extends \Elementor\Widget_Base {
 					'type' => \Elementor\Controls_Manager::SELECT2,
 					'label_block' => true,
 					'multiple' => true,
-					'options' => post_cat(),
+					'options' => post_cat('etn_category'),
 				]
 			);
 			$this->add_control(
@@ -63,7 +63,7 @@ class Kindaid_Event_Post extends \Elementor\Widget_Base {
 					'type' => \Elementor\Controls_Manager::SELECT2,
 					'label_block' => true,
 					'multiple' => true,
-					'options' => post_cat(),
+					'options' => post_cat('etn_category'),
 				]
 			);
 			$this->add_control(
@@ -73,7 +73,7 @@ class Kindaid_Event_Post extends \Elementor\Widget_Base {
 					'type' => \Elementor\Controls_Manager::SELECT2,
 					'label_block' => true,
 					'multiple' => true,
-					'options' => get_all_post(),
+					'options' => get_all_post('etn'),
 				]
 			);
 

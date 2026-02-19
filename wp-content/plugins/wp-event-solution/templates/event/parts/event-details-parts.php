@@ -66,13 +66,7 @@ class EventDetailsParts {
 		$event_options        = get_option( "etn_event_options" );
 		$email_show 		  =  $event_options["hide_oragnizer_email_from_events"] ?? '';
 	 
-		$data = [];
-		
-		if (empty($etn_organizer_events)) {
-			$data = [];
-		} else {
-			$data = get_users($args);
-		}
+		$data = get_users( $args );
         
 		if ( $data && $etn_organizer_events ) :
 			?>

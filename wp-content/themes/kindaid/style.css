@@ -258,6 +258,10 @@ body.admin-bar .header-sticky {
     border: 0;
 }
 
+.donation-details.charitable-table thead {
+   text-align: center;
+}
+
 
 .tp-about-list-icon {
     width: 54px;
@@ -272,7 +276,25 @@ body.admin-bar .dialog-lightbox-widget {
     display: none !important;
 }
 
-
 .tp_letest_event img{
     height: auto;
+}
+.tp-about-3-support-icon svg,.tp-about-3-support-icon img {
+    width: 37px;
+    height: 37px;
+    object-fit: cover;
+}
+.tp-about-3-contact-icon svg,.tp-about-3-contact-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+.tp-contact-remember p {
+    display: flex;
+}
+button[type="submit"] .btn-icon{
+    display: flex;
+}
+.tp-contact-icon svg{
+    fill: #FF4121;
 }

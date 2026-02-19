@@ -54,7 +54,8 @@
                                 $single_schedule_id = $post->ID;
                                 $j++;
                                 $schedule_meta   = get_post_meta($single_schedule_id);
-                                $schedule_topics = unserialize($schedule_meta['etn_schedule_topics'][0] ?? '') ?: [];
+                                $schedule_topics_raw = etn_safe_decode($schedule_meta['etn_schedule_topics'][0] ?? '');
+                                $schedule_topics = is_array($schedule_topics_raw) ? $schedule_topics_raw : [];
                                 $schedule_date   = ! empty($schedule_meta['etn_schedule_date'][0]) ? date_i18n("d M", strtotime($schedule_meta['etn_schedule_date'][0])) : "";
                                 $active_class    = (($j == 0) ? 'tab-active' : ' ');
                             ?>

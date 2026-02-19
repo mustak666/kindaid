@@ -191,7 +191,6 @@ class Zoom implements MeetingPlatformInterface {
             $tz = new \DateTimeZone( $tz_input );
         } catch (\Exception $e) {
             // Fallback to UTC on invalid timezone
-            error_log('Invalid timezone provided: ' . $timezone . ' | Fallback to UTC');
             $tz = new \DateTimeZone('UTC');
         }
 

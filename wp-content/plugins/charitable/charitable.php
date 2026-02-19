@@ -3,11 +3,11 @@
  * Plugin Name: Charitable
  * Plugin URI: https://www.wpcharitable.com
  * Description: The best WordPress donation plugin. Fundraising with recurring donations, and powerful features to help you raise more money online.
- * Version: 1.8.9.1
+ * Version: 1.8.9.5
  * Author: Charitable Donations & Fundraising Team
  * Author URI: https://wpcharitable.com
  * Requires at least: 5.0
- * Stable tag: 1.8.9.1
+ * Stable tag: 1.8.9.5
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
@@ -39,7 +39,7 @@ if ( ! class_exists( 'Charitable' ) ) :
 		const AUTHOR = 'WP Charitable';
 
 		/* Plugin version. */
-		const VERSION = '1.8.9.1';
+		const VERSION = '1.8.9.5';
 
 		/* Version of database schema. */
 		const DB_VERSION = '20180522';
@@ -1382,10 +1382,16 @@ if ( ! class_exists( 'Charitable' ) ) :
 		private function set_initial_rotating_menu_timestamps() {
 			// Get the rotating menu items configuration
 			$admin_pages = Charitable_Admin_Pages::get_instance();
-			$reflection = new ReflectionClass( $admin_pages );
-			$method = $reflection->getMethod( 'get_marketing_rotation_items' );
-			$method->setAccessible( true );
-			$items = $method->invoke( $admin_pages );
+
+			try {
+				$reflection = new ReflectionClass( $admin_pages );
+				$method = $reflection->getMethod( 'get_marketing_rotation_items' );
+				$method->setAccessible( true );
+				$items = $method->invoke( $admin_pages );
+			} catch ( ReflectionException $e ) {
+				// Fallback if reflection fails in future PHP versions
+				$items = array();
+			}
 
 			$current_time = time();
 

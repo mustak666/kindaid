@@ -175,7 +175,7 @@ class Kindaid_Causes_Post extends \Elementor\Widget_Base {
 							$goal = charitable_format_money($campaign->get_goal());
 							$raised = charitable_format_money($campaign->get_donated_amount ());
 							$button_text = $campaign->get('donate_button_text',true);
-							$percentage = ($campaign->get_donated_amount () > 0) ?($campaign->get_donated_amount () / $campaign->get_goal ()) * 100 : 0;
+							$percentage = ($campaign->get_donated_amount () > 0) ? round(($campaign->get_donated_amount () / $campaign->get_goal ()) * 100 ): 0;
 						?>
 							<?php if($settings['layout_style'] == 'layout_bg') : ?>
 								<div class="col-xl-4 col-lg-6 col-md-6">

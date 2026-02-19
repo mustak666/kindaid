@@ -106,6 +106,15 @@ if ( ! class_exists( 'Charitable_Donation_Form' ) ) :
 		protected $valid;
 
 		/**
+		 * Cached merged fields array.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var   array
+		 */
+		protected $merged_fields;
+
+		/**
 		 * Create a donation form object.
 		 *
 		 * @since 1.0.0
@@ -695,6 +704,15 @@ if ( ! class_exists( 'Charitable_Donation_Form' ) ) :
 					__( 'Unfortunately, we were unable to verify your form submission. Please reload the page and try again.', 'charitable' )
 				);
 
+				// Log the security validation failure
+				$error_details = ! $this->validate_nonce() ? 'nonce_failed' : 'honeypot_failed';
+				$context = array(
+					'campaign_id' => $this->get_campaign_id(),
+					'amount'      => $this->get_submitted_value( 'donation_amount' ),
+					'gateway'     => $this->get_submitted_value( 'gateway' ),
+				);
+				charitable_log_form_error( 'security_failure', $error_details, $context );
+
 				$ret = false;
 			}
 
@@ -729,6 +747,14 @@ if ( ! class_exists( 'Charitable_Donation_Form' ) ) :
 						$submitted
 					)
 				);
+
+				// Log the email validation failure
+				$context = array(
+					'campaign_id' => $this->get_campaign_id(),
+					'amount'      => $this->get_submitted_value( 'donation_amount' ),
+					'gateway'     => $this->get_submitted_value( 'gateway' ),
+				);
+				charitable_log_form_error( 'validation_failure', 'invalid_email', $context );
 
 				$ret = false;
 			}
@@ -796,6 +822,14 @@ if ( ! class_exists( 'Charitable_Donation_Form' ) ) :
 					)
 				);
 
+				// Log the minimum amount validation failure
+				$context = array(
+					'campaign_id' => $submitted['campaign_id'],
+					'amount'      => $amount,
+					'gateway'     => $this->get_submitted_value( 'gateway' ),
+				);
+				charitable_log_form_error( 'validation_failure', 'amount_below_minimum', $context );
+
 				$ret = false;
 			} elseif ( $maximum && $maximum < $amount ) {
 				charitable_get_notices()->add_error(
@@ -806,6 +840,14 @@ if ( ! class_exists( 'Charitable_Donation_Form' ) ) :
 					)
 				);
 
+				// Log the maximum amount validation failure
+				$context = array(
+					'campaign_id' => $submitted['campaign_id'],
+					'amount'      => $amount,
+					'gateway'     => $this->get_submitted_value( 'gateway' ),
+				);
+				charitable_log_form_error( 'validation_failure', 'amount_above_maximum', $context );
+
 				$ret = false;
 			} elseif ( $minimum === 0 && $amount <= 0 && ! apply_filters( 'charitable_permit_0_donation', false ) ) {
 				charitable_get_notices()->add_error(
@@ -815,6 +857,14 @@ if ( ! class_exists( 'Charitable_Donation_Form' ) ) :
 						charitable_format_money( $minimum )
 					)
 				);
+
+				// Log the zero amount validation failure
+				$context = array(
+					'campaign_id' => $submitted['campaign_id'],
+					'amount'      => $amount,
+					'gateway'     => $this->get_submitted_value( 'gateway' ),
+				);
+				charitable_log_form_error( 'validation_failure', 'zero_amount_not_permitted', $context );
 
 				$ret = false;
 			}

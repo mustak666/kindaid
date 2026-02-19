@@ -1264,7 +1264,7 @@ function charitable_verify_ssl_ajax() {
 				]
 			);
 }
-add_action( 'wp_ajax_charitable_verify_ssl', 'charitable_verify_ssl_ajax' );
+// add_action( 'wp_ajax_charitable_verify_ssl', 'charitable_verify_ssl_ajax' ); // Disabled - conflicts with handler in charitable-core-admin-functions.php
 
 
 /**

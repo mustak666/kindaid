@@ -106,6 +106,10 @@ class ScheduleController extends WP_REST_Controller {
             ),
         );
 
+
+
+        
+
         register_rest_route( $this->namespace, $this->rest_base . '/export', [
             [
                 'methods'             => WP_REST_Server::CREATABLE,
@@ -148,7 +152,7 @@ class ScheduleController extends WP_REST_Controller {
         $year     = ! empty( $request['year'] ) ? intval( $request['year'] ) : 0;
         $event_id = ! empty( $request['event_id'] ) ? intval( $request['event_id'] ) : 0;
 
-        $selected_schedule_ids = maybe_unserialize(
+        $selected_schedule_ids = etn_safe_decode(
             get_post_meta( $event_id, 'etn_event_schedule', true )
         );
 
@@ -430,7 +434,7 @@ class ScheduleController extends WP_REST_Controller {
     public function prepare_item_for_response( $item, $request ) {
         $id = $item->id;
 
-        $schedule_slot = maybe_unserialize( get_post_meta( $id, 'etn_schedule_topics', true ) );
+        $schedule_slot = etn_safe_decode( get_post_meta( $id, 'etn_schedule_topics', true ) );
 
         if ( is_array( $schedule_slot ) ) {
             foreach ( $schedule_slot as $key => &$slot ) {
@@ -477,7 +481,7 @@ class ScheduleController extends WP_REST_Controller {
         }
 
         if ( ! empty( $input_data['schedule_slot'] ) ) {
-            $prepared_data['etn_schedule_topics'] = $input_data['schedule_slot'];
+            $prepared_data['etn_schedule_topics'] = etn_sanitize_array_input( $input_data['schedule_slot'] );
         }
         else {
             $prepared_data['etn_schedule_topics'] = [];

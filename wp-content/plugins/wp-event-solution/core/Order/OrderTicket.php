@@ -140,13 +140,13 @@ class OrderTicket implements HookableInterface {
             if ( isset( $event_orders[$event_id] ) ) {
                 foreach ( $event_orders[$event_id] as $order_id ) {
                     // Get allocated seats
-                    $order_seats = maybe_unserialize( get_post_meta( $order_id, 'seat_ids', true ) );
+                    $order_seats = etn_safe_decode( get_post_meta( $order_id, 'seat_ids', true ) );
                     if ( is_array( $order_seats ) && ! empty( $order_seats ) ) {
                         $allocated_seats = array_merge( $allocated_seats, $order_seats );
                     }
 
                     // Get allocated tickets
-                    $order_tickets = maybe_unserialize( get_post_meta( $order_id, 'tickets', true ) );
+                    $order_tickets = etn_safe_decode( get_post_meta( $order_id, 'tickets', true ) );
                     if ( is_array( $order_tickets ) && ! empty( $order_tickets ) ) {
                         foreach ( $order_tickets as $ticket ) {
                             $ticket_slug = $ticket['ticket_slug'];
@@ -165,7 +165,7 @@ class OrderTicket implements HookableInterface {
             }
 
             // Get event's pending seats
-            $pending_seats = maybe_unserialize( get_post_meta( $event_id, 'pending_seats', true ) );
+            $pending_seats = etn_safe_decode( get_post_meta( $event_id, 'pending_seats', true ) );
             if ( ! is_array( $pending_seats ) ) {
                 $pending_seats = [];
             }
@@ -184,7 +184,7 @@ class OrderTicket implements HookableInterface {
             }
 
             // Get event tickets
-            $event_tickets = maybe_unserialize( get_post_meta( $event_id, 'etn_ticket_variations', true ) );
+            $event_tickets = etn_safe_decode( get_post_meta( $event_id, 'etn_ticket_variations', true ) );
 
             if ( is_array( $event_tickets ) ) {
                 $tickets_updated = false;
@@ -244,10 +244,10 @@ class OrderTicket implements HookableInterface {
         $this->update_booked_seat($event, $order);
         $this->update_pending_seat($event, $order);
 
-        $booked_seats   = maybe_unserialize(get_post_meta($order->id, 'seat_ids', true));
+        $booked_seats   = etn_safe_decode(get_post_meta($order->id, 'seat_ids', true));
         $booked_tickets = $order->tickets;
         $formatted_booked_tickets = [];
-        if (empty($booked_tickets)) {
+        if (!empty($booked_tickets)) {
             foreach ($booked_tickets as $ticket) {
                 $formatted_booked_tickets[] = [
                     'ticket_slug' => $ticket['ticket_slug'],
@@ -255,6 +255,8 @@ class OrderTicket implements HookableInterface {
                 ];
             }
         }
+
+        \Etn\Utils\Helper::increase_count_by_ticket_slug($formatted_booked_tickets,$event->id);
         
 
         $data = [
@@ -333,7 +335,7 @@ class OrderTicket implements HookableInterface {
             return;
         }
 
-        $pending_seats = maybe_unserialize(get_post_meta($event->id, 'pending_seats', true));
+        $pending_seats = etn_safe_decode(get_post_meta($event->id, 'pending_seats', true));
         if (! is_array($pending_seats)) {
             $pending_seats = [];
         }
@@ -412,6 +414,21 @@ class OrderTicket implements HookableInterface {
 
         $event = new Event_Model( $order->event_id );
 
+        $booked_tickets = $order->tickets;
+        $formatted_booked_tickets = [];
+        if ( !empty($booked_tickets) ) {
+            foreach ($booked_tickets as $ticket) {
+                $formatted_booked_tickets[] = [
+                    'ticket_slug' => $ticket['ticket_slug'],
+                    'ticket_quantity' => $ticket['ticket_quantity']
+                ];
+            }
+        }
+
+        \Etn\Utils\Helper::decrease_count_by_ticket_slug($formatted_booked_tickets,$event->id);
+
+
+
         $event_tickets = $event->etn_ticket_variations;
 
         $event_id = $order->event_id ?? null;
@@ -479,7 +496,7 @@ class OrderTicket implements HookableInterface {
 
         // Update seat on refunded.
         $event_seats = get_post_meta( $event->id, '_etn_seat_unique_id', true );
-        $order_seats = maybe_unserialize(get_post_meta( $order->id, 'seat_ids', true ));
+        $order_seats = etn_safe_decode(get_post_meta( $order->id, 'seat_ids', true ));
 
         if ( $order_seats ) {
             $event_seats = explode(',', $event_seats );
@@ -636,8 +653,8 @@ class OrderTicket implements HookableInterface {
      * @return  void
      */
     public function release_held_seats_and_tickets( $event_id, $seat_ids = [], $booked_tickets = [] ) {
-        $event_tickets = maybe_unserialize( get_post_meta( $event_id, 'etn_ticket_variations', true ) );
-        $pending_seats = maybe_unserialize( get_post_meta( $event_id, 'pending_seats', true ));
+        $event_tickets = etn_safe_decode( get_post_meta( $event_id, 'etn_ticket_variations', true ) );
+        $pending_seats = etn_safe_decode( get_post_meta( $event_id, 'pending_seats', true ));
 
         if ( ! is_array( $pending_seats ) ) {
             $pending_seats = [];

@@ -45,7 +45,7 @@ class Container {
      *
      * @return void
      */
-    public function set( string $id, object $instance = null ): void {
+    public function set( string $id, mixed $instance = null ): void {
         if ( $instance === null ) {
             $instance = $id;
         }

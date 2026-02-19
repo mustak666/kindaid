@@ -215,7 +215,7 @@ class User_Model {
      */
     public function get_speaker_category() {
         $categories = $this->get_prop( 'category' );
-        $categories = maybe_unserialize( $categories );
+        $categories = etn_safe_decode( $categories );
         $group = [];
         if ( is_array( $categories ) ) {
             foreach($categories as $category) {
@@ -232,7 +232,7 @@ class User_Model {
      */
     public function get_speaker_socials() {
         $social = $this->get_prop( 'social' ) ;
-        $social = maybe_unserialize( $social );
+        $social = etn_safe_decode( $social );
         return $social ? $social : [];
     }
 

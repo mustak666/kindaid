@@ -73,4 +73,46 @@ add_action( 'admin_init', array( Charitable_Import_Items::get_instance(), 'admin
  */
 add_action( 'admin_enqueue_scripts', array( Charitable_Intergrations_WPCode::get_instance(), 'enqueue_scripts' ) );
 add_action( 'admin_enqueue_scripts', array( Charitable_Tools_System_Info::get_instance(), 'enqueue_scripts' ) );
+
+/**
+ * Register AJAX action for email diagnostics.
+ *
+ * @since 1.8.9.2
+ */
+add_action( 'wp_ajax_charitable_email_diagnostics', array( Charitable_Tools_System_Info::get_instance(), 'ajax_email_diagnostics' ) );
+
+/**
+ * Register AJAX action for test email.
+ *
+ * @since 1.8.9.2
+ */
+add_action( 'wp_ajax_charitable_send_test_email', array( Charitable_Tools_System_Info::get_instance(), 'ajax_send_test_email' ) );
+
+/**
+ * Clear error logs via AJAX.
+ *
+ * @since 1.8.9.2
+ *
+ * @see Charitable_Tools_System_Info::ajax_clear_error_logs()
+ */
+add_action( 'wp_ajax_charitable_clear_error_logs', array( Charitable_Tools_System_Info::get_instance(), 'ajax_clear_error_logs' ) );
+
+/**
+ * Export error logs via AJAX.
+ *
+ * @since 1.8.9.2
+ *
+ * @see Charitable_Tools_System_Info::ajax_export_error_logs()
+ */
+add_action( 'wp_ajax_charitable_export_error_logs', array( Charitable_Tools_System_Info::get_instance(), 'ajax_export_error_logs' ) );
+
+/**
+ * Register AJAX action for debug log scanner.
+ *
+ * @since 1.8.9.2
+ *
+ * @see Charitable_Tools_System_Info::ajax_debug_log_scan()
+ */
+add_action( 'wp_ajax_charitable_debug_log_scan', array( Charitable_Tools_System_Info::get_instance(), 'ajax_debug_log_scan' ) );
+
 add_action( 'admin_enqueue_scripts', array( Charitable_Tools_Misc::get_instance(), 'enqueue_scripts' ) );

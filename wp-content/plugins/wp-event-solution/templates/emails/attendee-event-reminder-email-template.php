@@ -50,11 +50,13 @@
         ">
 
                 <?php
+                $date_format = get_option('date_format');
+                $time_format = get_option('time_format');
 
                 if ($event->etn_start_date == $event->etn_end_date) {
-                    printf('%s from %s - %s %s', esc_html( $event->get_start_datetime('l, F d, Y') ), esc_html( $event->get_start_datetime('h:i A') ), esc_html( $event->get_end_datetime('h:i A') ), esc_html( $event->get_timezone() ));
+                    printf('%s from %s - %s %s', esc_html($event->get_start_datetime($date_format)), esc_html($event->get_start_datetime($time_format)), esc_html($event->get_end_datetime($time_format)), esc_html($event->get_timezone()));
                 } else {
-                    printf('%s at %s - %s at %s %s', esc_html( $event->get_start_datetime('l, F d, Y') ), esc_html( $event->get_start_datetime('h:i A') ), esc_html( $event->get_end_datetime('l, F d, Y') ), esc_html( $event->get_end_datetime('h:i A') ), esc_html( $event->get_timezone() ));
+                    printf('%s at %s - %s at %s %s', esc_html($event->get_start_datetime($date_format)), esc_html($event->get_start_datetime($time_format)), esc_html($event->get_end_datetime($date_format)), esc_html($event->get_end_datetime($time_format)), esc_html($event->get_timezone()));
                 }
                 ?>
             </p>

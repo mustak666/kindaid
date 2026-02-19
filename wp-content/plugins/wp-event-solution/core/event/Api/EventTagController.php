@@ -6,6 +6,8 @@
  */
 namespace Eventin\Event\Api;
 
+use Eventin\Event\EventTagExporter;
+use Eventin\Event\EventTagImporter;
 use WP_Error;
 use WP_REST_Controller;
 use WP_REST_Server;
@@ -91,6 +93,22 @@ class EventTagController extends WP_REST_Controller {
                 ),
             ),
         );
+
+        register_rest_route( $this->namespace, $this->rest_base . '/export', [
+            [
+                'methods'             => WP_REST_Server::CREATABLE,
+                'callback'            => [ $this, 'export_items' ],
+                'permission_callback' => [ $this, 'export_item_permissions_check' ],
+            ]
+        ] );
+
+        register_rest_route( $this->namespace, $this->rest_base . '/import', [
+            [
+                'methods'             => WP_REST_Server::CREATABLE,
+                'callback'            => [ $this, 'import_items' ],
+                'permission_callback' => [ $this, 'import_item_permissions_check' ],
+            ]
+        ] );
     }
 
     /**
@@ -110,18 +128,50 @@ class EventTagController extends WP_REST_Controller {
      * @return WP_Error|WP_REST_Response
      */
     public function get_items( $request ) {
+        $per_page = isset( $request['per_page'] ) ? absint( $request['per_page'] ) : 10;
+        $page     = isset( $request['paged'] ) ? absint( $request['paged'] ) : 1;
+        $search   = isset( $request['search'] ) ? sanitize_text_field( $request['search'] ) : '';
+
         $prepared_args = array(
             'taxonomy'   => $this->taxonomy,
             'hide_empty' => false,
+            'number'     => $per_page,
+            'offset'     => ( $page - 1 ) * $per_page,
         );
+
+        if ( ! empty( $search ) ) {
+            $prepared_args['search'] = $search;
+        }
 
         $query_result = get_terms( $prepared_args );
 
-        $response = array();
+        $items = array();
 
-        foreach ( $query_result as $term ) {
-            $response[] = $this->prepare_item_for_response( $term->term_id, $request );
+        if ( ! is_wp_error( $query_result ) ) {
+            foreach ( $query_result as $term ) {
+                $items[] = $this->prepare_item_for_response( $term->term_id, $request );
+            }
         }
+
+        $total_args = array(
+            'taxonomy'   => $this->taxonomy,
+            'hide_empty' => false,
+            'fields'     => 'count',
+        );
+
+        if ( ! empty( $search ) ) {
+            $total_args['search'] = $search;
+        }
+
+        $total = get_terms( $total_args );
+
+        $response = array(
+            'items'       => $items,
+            'total'       => $total,
+            'total_pages' => ceil( $total / $per_page ),
+            'page'        => $page,
+            'per_page'    => $per_page,
+        );
 
         return rest_ensure_response( $response );
     }
@@ -384,5 +434,75 @@ class EventTagController extends WP_REST_Controller {
         }
 
         return $prepared_data;
+    }
+
+    /**
+     * Export items
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return WP_Error|void
+     */
+    public function export_items( $request ) {
+        $format = ! empty( $request['format'] ) ? sanitize_text_field( $request['format'] ) : '';
+        $ids    = ! empty( $request['ids'] ) ? $request['ids'] : '';
+
+        if ( ! $format ) {
+            return new WP_Error( 'format_error', __( 'Invalid data format', 'eventin' ));
+        }
+
+        if ( ! $ids ) {
+            $ids = EventTagExporter::get_ids();
+        }
+
+        $exporter = new EventTagExporter();
+        $response = $exporter->export( $ids, $format );
+
+        if ( is_wp_error( $response ) ) {
+            return $response;
+        }
+    }
+
+    /**
+     * Check the permissions for export items
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return bool
+     */
+    public function export_item_permissions_check( $request ) {
+        return current_user_can( 'etn_manage_event' );
+    }
+
+    /**
+     * Import items
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return WP_Error|WP_REST_Response
+     */
+    public function import_items( $request ) {
+        $data = $request->get_file_params();
+        $file = ! empty( $data['tag_import'] ) ? $data['tag_import'] : '';
+
+        if ( ! $file ) {
+            return new WP_Error( 'empty_file', __( 'You must provide a valid file.', 'eventin' ), [ 'status' => 409 ] );
+        }
+
+        $importer = new EventTagImporter();
+        $importer->import( $file );
+
+        $response = [
+            'message' => __( 'Successfully imported tags', 'eventin' ),
+        ];
+
+        return rest_ensure_response( $response );
+    }
+
+    /**
+     * Check permission for the import tags
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return bool
+     */
+    public function import_item_permissions_check( $request ) {
+        return current_user_can( 'etn_manage_event' );
     }
 }

@@ -68,7 +68,7 @@ class OrderReport extends AbstractReport {
      *
      * @return  array
      */
-    public static function get_orders( $data = [] ) {
+    public static function get_orders( $data = [], $event_id = null ) {
         $input      = new Input( $data );
         $start_date = $input->get( 'start_date' );
         $end_date   = $input->get( 'end_date' );
@@ -87,7 +87,14 @@ class OrderReport extends AbstractReport {
             ]
         ];
 
-        if ( ! current_user_can( 'manage_options' ) ) {
+        if ( ! empty( $event_id ) ) {
+            $args['meta_query'][] = [
+                'key'       => 'event_id',
+                'value'     => $event_id,
+                'compare'   => '=',
+            ];
+        }
+        elseif ( ! current_user_can( 'manage_options' ) ) {
             $event = new Event_Model();
             $event_ids = $event->get_ids_by_author( get_current_user_id() );
             $event_ids = ! empty( $event_ids ) ? $event_ids : '';

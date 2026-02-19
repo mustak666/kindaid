@@ -326,33 +326,34 @@ if ( ! class_exists( 'Charitable_Campaign_Builder' ) ) :
 
 			$url_data_params = http_build_query( $url_data );
 
+			// Use REST API for admin CSS templates (added in 1.8.9.2)
 			wp_enqueue_style(
 				'charitable-builder-template-preview-theme',
-				charitable()->get_path( 'directory', false ) . "assets/css/campaign-builder/themes/admin/{$template_id}.php?" . $url_data_params,
+				add_query_arg( $url_data, rest_url( 'charitable/v1/campaign-css-admin/' . $template_id ) ),
 				array(),
 				$style_version
 			);
 			wp_enqueue_style(
 				'charitable-builder-template-preview-theme-colors-primary',
-				charitable()->get_path( 'directory', false ) . "assets/css/campaign-builder/themes/admin/{$template_id}-colors.php?" . $url_data_params,
+				add_query_arg( $url_data, rest_url( 'charitable/v1/campaign-css-admin/' . $template_id . '-colors' ) ),
 				array(),
 				$style_version
 			);
 			wp_enqueue_style(
 				'charitable-builder-template-preview-theme-colors-secondary',
-				charitable()->get_path( 'directory', false ) . "assets/css/campaign-builder/themes/admin/{$template_id}-colors.php?" . $url_data_params,
+				add_query_arg( $url_data, rest_url( 'charitable/v1/campaign-css-admin/' . $template_id . '-colors' ) ),
 				array(),
 				$style_version
 			);
 			wp_enqueue_style(
 				'charitable-builder-template-preview-theme-colors-tertiary',
-				charitable()->get_path( 'directory', false ) . "assets/css/campaign-builder/themes/admin/{$template_id}-colors.php?" . $url_data_params,
+				add_query_arg( $url_data, rest_url( 'charitable/v1/campaign-css-admin/' . $template_id . '-colors' ) ),
 				array(),
 				$style_version
 			);
 			wp_enqueue_style(
 				'charitable-builder-template-preview-theme-colors-button',
-				charitable()->get_path( 'directory', false ) . "assets/css/campaign-builder/themes/admin/{$template_id}-colors.php?" . $url_data_params,
+				add_query_arg( $url_data, rest_url( 'charitable/v1/campaign-css-admin/' . $template_id . '-colors' ) ),
 				array(),
 				$style_version
 			);
@@ -957,6 +958,7 @@ if ( ! class_exists( 'Charitable_Campaign_Builder' ) ) :
 					'charitable_campaign_builder_charitable_assets_dir',
 					charitable()->get_path( 'directory', false ) . 'assets/'
 				),
+				'charitable_rest_url'               => rest_url( 'charitable/v1/' ),
 			);
 
 			if ( $this->is_tour_active() ) {

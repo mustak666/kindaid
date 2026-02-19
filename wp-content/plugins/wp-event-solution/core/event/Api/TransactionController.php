@@ -330,7 +330,7 @@ class TransactionController extends WP_REST_Controller {
             'invoice'           => $item->invoice,
             'amount'            => $item->event_amount,
             'ticket_quantity'   => $item->ticket_qty,
-            'ticket_variations' => maybe_unserialize( $item->ticket_variations ),
+            'ticket_variations' => etn_safe_decode( $item->ticket_variations ),
         ];
 
         return $transaction_data;

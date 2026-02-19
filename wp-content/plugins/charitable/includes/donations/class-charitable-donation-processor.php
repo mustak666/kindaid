@@ -396,6 +396,15 @@ if ( ! class_exists( 'Charitable_Donation_Processor' ) ) :
 					$errors = array( __( 'Unable to process donation.', 'charitable' ) );
 				}
 
+				// Log the AJAX processing failure
+				$context = array(
+					'campaign_id' => $processor->get_donation_data_value( 'campaign_id' ),
+					'amount'      => $processor->get_donation_data_value( 'donation_amount' ),
+					'gateway'     => $processor->get_donation_data_value( 'gateway' ),
+					'donation_id' => (int) $processor->get_donation_id(),
+				);
+				charitable_log_form_error( 'ajax_failure', 'donation_processing_failed', $context );
+
 				$response['success']     = false;
 				$response['errors']      = $errors;
 				$response['donation_id'] = (int) $processor->get_donation_id();

@@ -47,7 +47,7 @@ class Api extends \Etn\Base\Api_Handler {
 				}
 
 				if ( in_array( $key, $serialized_meta ) ) {
-					$event_meta[$key] = maybe_unserialize( $event_meta[$key] );
+					$event_meta[$key] = etn_safe_decode( $event_meta[$key] );
 				}
 
 				
@@ -556,7 +556,7 @@ class Api extends \Etn\Base\Api_Handler {
 			$filtered_seat_plan = array_filter($seat_plan, function($seat) use ($ticket_variations, $current_datetime,$is_admin) {
 				// Find the matching ticket variation
 				foreach ($ticket_variations as $variation) {
-					if ($variation['etn_ticket_name'] === $seat['ticketType']) {
+					if (!empty($seat['ticketType']) && !empty($variation['etn_ticket_name']) && $variation['etn_ticket_name'] === $seat['ticketType']) {
 						// Check if the ticket variation is expired (considering both date and time)
 						$end_date = $variation['end_date'];
 						$end_time = $variation['end_time'];
@@ -606,6 +606,9 @@ class Api extends \Etn\Base\Api_Handler {
 		$event_id           = ! empty( $request['event_id'] ) ? intval( $request['event_id'] ) : 0;
 		$seat_plan          = ! empty( $request['seat_plan'] ) ?  $request['seat_plan']  : [];
 		$seat_plan_settings = ! empty( $request['seat_plan_settings'] ) ? $request['seat_plan_settings']  : [];
+
+		$is_seat_plan_already_exist = get_post_meta( $event_id, 'seat_plan', true );
+
 		if ( ! empty( $seat_plan ) ) {
 			$chair_id = 1;
 			foreach ($seat_plan as $key => &$seat) {
@@ -615,9 +618,12 @@ class Api extends \Etn\Base\Api_Handler {
 						$chair_id++;
 					}
 				}
-				// Set the seat id to the seat number
-				$seat['id'] = $seat['number'];
-			
+				if ( !empty( $is_seat_plan_already_exist ) ) {
+					$seat['id'] = $key;
+				}
+				else {
+					$seat['id'] = uniqid();
+				}
 			}
 		}
 

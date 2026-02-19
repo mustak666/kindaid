@@ -88,17 +88,25 @@ class AdminOrderEmail extends Mailable {
 		$address    = ! empty( $location['address'] ) ? $location['address'] : '';
 
         // customer details
-       
+
         $customer_fname = $this->order->customer_fname;
         $customer_email = $this->order->customer_email;
-        
+
+        // Format date and time according to WordPress settings
+        $date_format     = get_option( 'date_format' );
+        $time_format     = get_option( 'time_format' );
+        $utc             = new \DateTimeZone( 'UTC' );
+        $start_date      = wp_date( $date_format, strtotime( $event->etn_start_date ), $utc );
+        $start_date_time = $event->etn_start_date . ' ' . $event->etn_start_time;
+        $start_time      = wp_date( $time_format, strtotime( $start_date_time ), $utc );
+
         $placeholder = [
 			'{%site_name%}' 	 => get_bloginfo( 'name' ),
 			'{%site_link%}' 	 => site_url(),
 			'{%site_logo%}' 	 => get_bloginfo('logo'),
 			'{%event_title%}'    => $post->post_title,
-			'{%event_date%}' 	 => $event->etn_start_date,
-			'{%event_time%}' 	 => $event->etn_start_time,
+			'{%event_date%}' 	 => $start_date,
+			'{%event_time%}' 	 => $start_time,
 			'{%event_location%}' => $address,
 			'{%customer_name%}'  => $customer_fname,
 			'{%customer_email%}' => $customer_email,

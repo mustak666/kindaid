@@ -1,5 +1,3 @@
-__( 'Not Found', 'elementor' );
-__( 'Not Found', 'elementor' );
 __( 'Something went wrong.', 'elementor' );
 __( 'Continue', 'elementor' );
 __( 'Go Back', 'elementor' );
@@ -11,6 +9,8 @@ __( 'We’re sorry, but something went wrong. Click on ‘Learn more’ and foll
 __( 'Learn More', 'elementor' );
 __( 'Go Back', 'elementor' );
 __( 'This file type is not allowed', 'elementor' );
+__( 'Not Found', 'elementor' );
+__( 'Not Found', 'elementor' );
 __( 'This file type is not allowed', 'elementor' );
 __( 'Select File', 'elementor' );
 __( 'Upgrade Now', 'elementor' );
@@ -436,6 +436,9 @@ __( 'about using templates', 'elementor' );
 __( 'No favorites here yet...', 'elementor' );
 __( 'Use the heart icon to save Website Templates that inspire you. You\'ll be able to find them here.', 'elementor' );
 __( 'Continue browsing.', 'elementor' );
+__( 'Access Website Templates with a plan upgrade', 'elementor' );
+__( 'Your current plan doesn\'t include saving and importing Website Templates. Upgrade to the Advanced plan or higher to use this feature.', 'elementor' );
+__( 'Compare plans', 'elementor' );
 __( 'It\'s time to level up', 'elementor' );
 __( 'Upgrade to Elementor Pro to import your own website template and save templates that you can reuse on any of your connected websites.', 'elementor' );
 __( 'Upgrade now', 'elementor' );
@@ -498,8 +501,8 @@ __( 'Show less', 'elementor' );
 __( 'Show more', 'elementor' );
 __( 'What\'s included:', 'elementor' );
 __( 'Import', 'elementor' );
-__( 'Settings up your website templates...', 'elementor' );
-__( 'This usually take a few moments.', 'elementor' );
+__( 'Setting up your website template...', 'elementor' );
+__( 'This usually takes a few moments.', 'elementor' );
 __( 'Don\'t close this window until the process is finished.', 'elementor' );
 __( 'Import', 'elementor' );
 __( 'Import a website template', 'elementor' );
@@ -747,10 +750,10 @@ __( 'Parts of this kit overlap with your site’s templates, design and settings
 __( 'Note:', 'elementor' );
 __( "Your site's homepage will be determined by the kit. You can change this later.", 'elementor' );
 __( 'Select the items you want to keep and apply:', 'elementor' );
-__( 'Activating plugins:', 'elementor' );
 __( 'Importing your content, templates and site settings', 'elementor' );
 __( 'This allows Elementor to scan your SVGs for malicious content. Otherwise, you can skip any SVGs in this import.', 'elementor' );
 __( 'Nothing to worry about, just continue without importing SVGs or go back and start the import again.', 'elementor' );
+__( 'Activating plugins:', 'elementor' );
 __( 'Select which plugins to include', 'elementor' );
 __( 'All items are already selected by default. Uncheck the ones you don\'t want.', 'elementor' );
 __( ' Recommended:', 'elementor' );
@@ -764,12 +767,9 @@ __( 'Heads up!', 'elementor' );
 __( 'Before applying a new template, we recommend backing up your site so you can roll back any undesired changes.', 'elementor' );
 __( 'Choose a file to import', 'elementor' );
 __( 'Drag & drop the .zip file with your website template', 'elementor' );
-__( 'Import from files' ) }
-						/>
-
-						{ dialog.isOpen &&
-							<Dialog
-								title={ __( 'Warning: JSON or ZIP files may be unsafe', 'elementor' );
+__( 'Or', 'elementor' );
+__( 'Import from files', 'elementor' );
+__( 'Warning: JSON or ZIP files may be unsafe', 'elementor' );
 __( 'Uploading JSON or ZIP files from unknown sources can be harmful and put your site at risk. For maximum safety, upload only JSON or ZIP files from trusted sources.', 'elementor' );
 __( 'Continue', 'elementor' );
 __( 'Cancel', 'elementor' );

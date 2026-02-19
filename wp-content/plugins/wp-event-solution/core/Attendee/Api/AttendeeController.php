@@ -497,6 +497,20 @@ class AttendeeController extends WP_REST_Controller {
             );
         }
 
+        $attendee_details = $attendee->get_data();
+        $ticket_slug = $attendee_details['ticket_slug'] ?? '';
+        $event_id = $attendee_details['etn_event_id'] ?? '';
+
+        if (!empty($ticket_slug) && !empty($event_id)) {
+            $formatted_booked_tickets[] = [
+                'ticket_slug' => $ticket_slug,
+                'ticket_quantity' => 1
+            ];
+
+            \Etn\Utils\Helper::decrease_count_by_ticket_slug($formatted_booked_tickets, $event_id);
+        }
+
+
         do_action( 'eventin_attendee_deleted', $id );
 
         return $response;
@@ -526,8 +540,22 @@ class AttendeeController extends WP_REST_Controller {
 
             if ( $attendee->trash_post() ) {
                 $count++;
-                
-                do_action( 'eventin_attendee_deleted', $id );
+
+                $attendee_details = $attendee->get_data();
+                $ticket_slug = $attendee_details['ticket_slug'] ?? '';
+                $event_id = $attendee_details['etn_event_id'] ?? '';
+
+                if (!empty($ticket_slug) && !empty($event_id)) {
+                    $formatted_booked_tickets = [];
+                    $formatted_booked_tickets[] = [
+                        'ticket_slug' => $ticket_slug,
+                        'ticket_quantity' => 1
+                    ];
+                    
+                    \Etn\Utils\Helper::decrease_count_by_ticket_slug($formatted_booked_tickets, $event_id);
+                }
+
+                do_action('eventin_attendee_deleted', $id);
             }
         }
 

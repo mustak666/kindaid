@@ -399,7 +399,12 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 		 */
 		public function perform_immediate_upgrade( $action, $upgrade ) {
 			if ( $this->do_upgrade_immediately( $upgrade ) ) {
-				$ret = call_user_func( $upgrade['callback'], $action );
+				$callback = $upgrade['callback'];
+				if ( is_callable( $callback ) ) {
+					$ret = $callback( $action );
+				} else {
+					$ret = false;
+				}
 
 				/* If the upgrade succeeded, update the log. */
 				if ( $ret ) {
@@ -434,12 +439,14 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 				if ( ! $this->upgrade_has_been_completed( $action ) ) {
 
 					/* If the upgrade has an active_callback, check whether the upgrade is required. If not, mark it as done. */
-					if ( array_key_exists( 'active_callback', $upgrade ) && ! call_user_func( $upgrade['active_callback'] ) ) {
+					$active_callback = $upgrade['active_callback'] ?? null;
+					$is_active = $active_callback && is_callable( $active_callback ) ? $active_callback() : true;
+					if ( array_key_exists( 'active_callback', $upgrade ) && ! $is_active ) {
 						$this->update_upgrade_log( $action );
 						continue;
 					}
 
-					call_user_func( $callback, $action, $upgrade );
+					$callback( $action, $upgrade );
 
 				}
 
@@ -1414,7 +1421,9 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 
 				if ( self::requires_upgrade( $this->db_version, $version ) ) {
 
-					call_user_func( array( $this, $method ) );
+					if ( method_exists( $this, $method ) ) {
+						$this->$method();
+					}
 
 				}
 			}

@@ -6,6 +6,59 @@ use Etn\Core\Event\Event_Model;
 use Etn\Utils\Helper;
 use SureCart\Support\Currency;
 
+if ( ! function_exists( 'etn_safe_decode' ) ) {
+    /**
+     * Safely unserialize data, preventing PHP Object Injection.
+     *
+     * Uses allowed_classes => false to block instantiation of
+     * PHP objects during unserialization.
+     *
+     * @since 4.1.4
+     * @param mixed $data The data to unserialize.
+     * @return mixed The unserialized data (no objects), or the original data if not serialized.
+     */
+    function etn_safe_decode( $data ) {
+        if ( ! is_string( $data ) ) {
+            return $data;
+        }
+
+        if ( ! is_serialized( $data ) ) {
+            return $data;
+        }
+
+        return @unserialize( $data, [ 'allowed_classes' => false ] );
+    }
+}
+
+if ( ! function_exists( 'etn_sanitize_array_input' ) ) {
+    /**
+     * Sanitize input to prevent PHP Object Injection.
+     *
+     * This function rejects serialized strings that could contain malicious PHP objects.
+     * Arrays and non-serialized strings are passed through for further processing.
+     *
+     * @since 4.1.2
+     * @param mixed $input The input to sanitize.
+     * @return array|string Returns array if input is array, string if input is non-serialized string, empty array otherwise.
+     */
+    function etn_sanitize_array_input( $input ) {
+        // If it's already an array, return it
+        if ( is_array( $input ) ) {
+            return $input;
+        }
+        // If it's a serialized string, reject it to prevent PHP Object Injection
+        if ( is_string( $input ) && is_serialized( $input ) ) {
+            return [];
+        }
+        // Return non-serialized strings as-is (safe for further processing like CSV parsing)
+        if ( is_string( $input ) ) {
+            return $input;
+        }
+        // Return empty array for other non-array input types
+        return [];
+    }
+}
+
 if ( ! function_exists( 'etn_array_csv_column' ) ) {
     /**
      * Convert array to CSV column
@@ -1209,7 +1262,8 @@ if ( ! function_exists( 'etn_validate_event_tickets' ) ) {
                 $ticket_left = intval($available) - intval($sold) - intval($pending);
             }
 
-            if ( $ticket['ticket_quantity'] > $ticket_left ) {
+            $available = $event_ticket['etn_avaiilable_tickets']??0;
+            if ($available > 0 && $ticket['ticket_quantity'] > $ticket_left ) {
                 return new WP_Error( 'ticket_limit', __( 'The ticket limit has been exceeded', 'eventin' ), ['status' => 422] );
             }
         }
@@ -1227,9 +1281,9 @@ if ( ! function_exists( 'etn_validate_seat_ids' ) ) {
      * @return  bool | WP_Error
      */
     function etn_validate_seat_ids( $event_id, $seat_ids ) {
-        $booked_seats = maybe_unserialize( get_post_meta( $event_id, '_etn_seat_unique_id', true ));
+        $booked_seats = etn_safe_decode( get_post_meta( $event_id, '_etn_seat_unique_id', true ));
         $already_booked_seats = $booked_seats ? explode(',', $booked_seats) : [];
-        $pending_seats = maybe_unserialize( get_post_meta( $event_id, 'pending_seats', true ));
+        $pending_seats = etn_safe_decode( get_post_meta( $event_id, 'pending_seats', true ));
         if ( empty( $pending_seats ) ) {
             $pending_seats = [];
         }

@@ -12,6 +12,7 @@ function kindaid_matafield( $meta_boxes ) {
                 'label'           => esc_html__('Header Option By Page', 'kindaid'),
                 'id'              => "header_option_page",
                 'type'            => 'select',
+                'placeholder' => esc_html__( 'Select Header Style', 'kindaid' ),
                 'options'         => array(
                     'header_style_blank' => 'Header Style Blank',
                     'header_style_1' => 'Header Style 01',
@@ -19,7 +20,7 @@ function kindaid_matafield( $meta_boxes ) {
                     'header_style_3' => 'Header Style 03',
                 ),
                 'conditional' => array(),
-                'default' => '',
+                'default' => 'header_style_blank',
                 'multiple' => false,
             ),
             array(
@@ -27,13 +28,14 @@ function kindaid_matafield( $meta_boxes ) {
                 'label'           => esc_html__('Footer Option By Page', 'kindaid'),
                 'id'              => "Footer_option_page",
                 'type'            => 'select',
+                'placeholder' => esc_html__( 'Select Footer Style', 'kindaid' ),
                 'options'         => array(
                     'footer_style_blank' => 'Footer Style Blank',
                     'footer_style_1' => 'Footer Style 01',
                     'footer_style_2' => 'Footer Style 02',
                 ),
                 'conditional' => array(),
-                'default' => '',
+                'default' => 'footer_style_blank',
                 'multiple' => false,
             )
         ),
@@ -102,6 +104,12 @@ function kindaid_matafield( $meta_boxes ) {
                 array(
                     'label' => 'Breadcrumb Menu On/Off',
                     'id'    => "breadcrumb_menu_switch",
+                    'type'  => 'switch', // specify the type field
+                    'default' => 'on', // do not remove default key
+                ),
+                array(
+                    'label' => 'Breadcrumb On/Off',
+                    'id'    => "breadcrumb_switch",
                     'type'  => 'switch', // specify the type field
                     'default' => 'on', // do not remove default key
                 ),

@@ -40,11 +40,7 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 		 * @return Charitable_User_Management
 		 */
 		public static function get_instance() {
-			if ( is_null( self::$instance ) ) {
-				self::$instance = new self();
-			}
-
-			return self::$instance;
+			return self::$instance ??= new self();
 		}
 
 		/**

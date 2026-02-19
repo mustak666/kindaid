@@ -7,11 +7,11 @@ function kindaid_breadcrumb() {
     $breadcrumb_show = 1;
 
     if ( is_front_page() && is_home() ) {
-        $title = get_theme_mod('breadcrumb_blog_title', __('Blog', 'kindaid'));
+        $title = get_theme_mod('breadcrumb_blog_title', __('Home', 'kindaid'));
         $breadcrumb_class = 'home_front_page';
     }
      elseif ( is_front_page() ) {
-        $title = get_theme_mod('breadcrumb_blog_title', __('Blog', 'kindaid'));
+        $title = get_theme_mod('breadcrumb_blog_title', __('Home', 'kindaid'));
         $breadcrumb_show = 0;
     }
      elseif ( is_home() ) {
@@ -45,8 +45,9 @@ function kindaid_breadcrumb() {
     $breadcrumb_bg = function_exists('tpmeta_image_field') ? tpmeta_image_field('breadcrumb_bg') : ''; // tpmeta_image_field($id, $size)
     $breadcrumb_menu_switch = function_exists('tpmeta_field')? tpmeta_field('breadcrumb_menu_switch') : '';
     $switch_breadcrumb = get_theme_mod('switch_breadcrumb', true) ;
+    $breadcrumb_switch_page = function_exists('tpmeta_field')? tpmeta_field('breadcrumb_switch') : '';
     ?>
-        <?php if(!empty($switch_breadcrumb)):?>
+        <?php if(!empty($switch_breadcrumb)): if(!empty($breadcrumb_switch_page == 'on')):?>
             <div class="tp-breadcrumb-area tp-breadcrumb-bg position-relative">
                 <?php if(!empty($breadcrumb_bg_global) || !empty($breadcrumb_bg)):?>
                     <div class="tp-breadcrumb-thumb">
@@ -76,7 +77,7 @@ function kindaid_breadcrumb() {
                     </div>
                 </div>
             </div> 
-        <?php endif;?>
+        <?php endif;endif;?>
     <?php
 }
 

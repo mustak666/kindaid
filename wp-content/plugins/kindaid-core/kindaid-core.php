@@ -40,17 +40,22 @@ add_action( 'elementor/elements/categories_registered', 'kindaid_add_elementor_w
 
 
 function register_kindaid_widget( $widgets_manager ) {
-	require_once( __DIR__ . '/widgets/event-post-long.php' );
-	require_once( __DIR__ . '/widgets/event-post.php' );
+	require_once( __DIR__ . '/widgets/cta-box.php' );
+	require_once( __DIR__ . '/widgets/contect.php' );
+	require_once( __DIR__ . '/widgets/about-foundation.php' );
+	require_once __DIR__ . '/widgets/event-post-long.php';
+	require_once __DIR__ . '/widgets/event-post.php';
 	require_once( __DIR__ . '/widgets/misson.php' );
 	require_once( __DIR__ . '/widgets/hero-video.php' );
 	require_once( __DIR__ . '/widgets/step-box.php' );
 	require_once( __DIR__ . '/widgets/gallery.php' );
 	require_once( __DIR__ . '/widgets/testimonail.php' );
+	require_once( __DIR__ . '/widgets/about-foundation.php' );
 	require_once( __DIR__ . '/widgets/about.php' );
 	require_once( __DIR__ . '/widgets/services-list.php' );
 	require_once( __DIR__ . '/widgets/hero-slider.php' );
 	if(function_exists('charitable')){
+		require_once( __DIR__ . '/widgets/causes-support.php' );
 		require_once( __DIR__ . '/widgets/causes-slider.php' );
 		require_once( __DIR__ . '/widgets/causes-post.php' );
 	}
